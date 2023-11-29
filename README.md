@@ -7,6 +7,10 @@ This game functions just like ispy, the twist is that you have to find each item
 ## Easter Egg
 there's a hidden immunity idol out there, if you find it it's yours and you are guaranteed immunity (an automatic win)!
 
+## Player's Directions: 
+OUTWIT OUTPLAY OUTLAST
+This is Survivor Matanivika; find all the items your tribe needs to make your time on the island that much more survivable. Press start when you're ready and begin the search. Remember, you MUST find the item that fits the clue before you can move on to the next, if you try and skip ahead it could be a million dollar mistake.
+
 ## User Story
 As a user, I want the ability to...
 - press start
@@ -17,10 +21,6 @@ As a user, I want the ability to...
 
 ## Wireframes
 ![wireframes](assets/image.png)
-
-## Player's Directions: 
-OUTWIT OUTPLAY OUTLAST
-This is Survivor Matanivika; find all the items your tribe needs to make your time on the island that much more survivable. Press start when you're ready and begin the search. Remember, you MUST find the item that fits the clue before you can move on to the next, if you try and skip ahead it could be a million dollar mistake.
 
 ## Technologies Used
 HTML5, CSS, JavaScript, Midjourney + Photoshop
