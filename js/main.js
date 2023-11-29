@@ -5,7 +5,7 @@
 // when the item is found, click on it
 // when the item is clicked a border will appear around the item to signal it's been found
 // when the mouse is released from the click the item will fill in the gray silhouette next to its clue
-// repeat steps 2-7 until all items have been found
+// repeat steps 2-7 until all items have been found (unless immunity idol is found or player receives losing message)
 // win message if all items have been found before the timer runs out
 // win message if immunity idol is found (can be at any point in the game)
 // better luck next time if timer runs out before all items have been found
