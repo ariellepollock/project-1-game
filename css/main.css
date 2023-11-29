@@ -1,0 +1,29 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    display: grid;
+    grid-template-columns: ;
+    grid-template-rows: ;
+    grid-template-areas: ;
+}
+
+header {
+    grid-area: header;
+    display: flex;
+    background-color: brown;
+    color: white;
+}
+
+.gameRules {
+    grid-area: rules;
+    display: flex;
+    background-color: burlywood;
+}
