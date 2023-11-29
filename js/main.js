@@ -1,4 +1,4 @@
-// read the directions and press start to see the first clue and start the timer
+// read the directions and press start to see the clues AND start the timer
 // read the first clue
 // look for the item that belongs to the clue
 // use the hint button if stuck (hint will provide more directions/details on where to find the item)
@@ -14,11 +14,21 @@
 
 
 /*------ CONSTANTS ------*/
-
+// const item1
+// const item2
+// const item3
+// const item4
+// const item5
+// const item6
+// const item7
+// const item8
+// const item9
+// const item10
+// const idol
 
 
 /*------ STATE VARIABLES ------*/
-
+// array iterator methods for state/location of items
 
 
 /*------ CACHED DOM ELEMENTS ------*/
@@ -26,7 +36,19 @@
 
 
 /*------ FUNCTIONS ------*/
-
+// initializer -> set up initial state when button is pushed (with event listener)
+// renderResults -> show "found" items
+// renderIdol -> show "found" idol and activate getWinner + renderResults)
+// renderCountdown -> display countdown to user
+// setup timer -> set how timer state progresses, if else if
+// handleChoice -> player selects move (pair with event listener)
+// startOver -> returns items to img (invoked if player invokes renderResults out of order)(timer continues to run)
+// getWinner -> determine if player wins (if all renderResults are invoked OR if renderIdol is invoked)
+// getLoser -> determines if player loses (if timer function ends before renderResults + renderIdol are invoked)
 
 
 /*------ EVENT LISTENERS ------*/
+// hover over start button
+// when start button is clicked
+// when item is clicked
+// when idol is clicked
