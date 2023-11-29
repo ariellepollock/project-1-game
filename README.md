@@ -22,3 +22,6 @@ As a user, I want the ability to...
 OUTWIT OUTPLAY OUTLAST
 This is Survivor Matanivika; find all the items your tribe needs to make your time on the island that much more survivable. Press start when you're ready and begin the search. Remember, you MUST find the item that fits the clue before you can move on to the next, if you try and skip ahead it could be a million dollar mistake.
 
+## Technologies Used
+HTML5, CSS, JavaScript, Midjourney + Photoshop
+
