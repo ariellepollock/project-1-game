@@ -14,7 +14,7 @@ body {
 
 main {
     display: grid;
-    grid-template-columns: 10vw 10vw 10vw 10vw 10vw 10vw 10vw 10vw;
+    grid-template-columns: repeat(8, 10vw);
     grid-template-rows: 5vh 15vh 15vh 15vh 15vh 15vh;
     grid-template-areas: 
         "header header header header header header header header"
@@ -58,9 +58,6 @@ header {
     background-color: dimgray;
 }
 
-.items {
-}
-
 .shadows {
     grid-area: shadows;
     display: flex;
@@ -89,20 +86,25 @@ button {
 
 #item1 {
     grid-area: item1;
+    display: flex;
 }
 
 #item2 {
     grid-area: item2;
+    display: flex;
 }
 
 #item3 {
     grid-area: item3;
+    display: flex;
 }
 
 #item4 {
     grid-area: item4;
+    display: flex;
 }
 
 #item5 {
     grid-area: item5;
+    display: flex;
 }
