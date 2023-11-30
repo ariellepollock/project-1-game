@@ -55,7 +55,9 @@ header {
         ". . item2 . ."
         ". . . . item3"
         ". . item5 . .";
-    background-color: dimgray;
+    background-image: url(assets/elle.ollo.png);
+    background-size: cover;
+    position: relative;
 }
 
 .shadows {
@@ -82,29 +84,28 @@ button {
 #item1, #item2, #item3, #item4, #item5 {
     width: 50px;
     height: 50px;
+    display: flex;
+    place-self: center;
+    position: relative;
 }
 
 #item1 {
     grid-area: item1;
-    display: flex;
 }
 
 #item2 {
     grid-area: item2;
-    display: flex;
 }
 
 #item3 {
     grid-area: item3;
-    display: flex;
 }
 
 #item4 {
     grid-area: item4;
-    display: flex;
+
 }
 
 #item5 {
     grid-area: item5;
-    display: flex;
 }
