@@ -79,7 +79,7 @@ header {
     position: relative;
 }
 
-.shadows {
+.shadowCtr {
     grid-area: shadows;
     display: flex;
     flex-direction: row;
@@ -95,7 +95,7 @@ button {
     width: 100px;
 }
 
-#item1Shadow, #item2Shadow, #item3Shadow, #item4Shadow, #item5Shadow, #item6Shadow, #item7Shadow, #item8Shadow, #item9Shadow, #item10Shadow {
+.shadow {
     width: 50px;
     height: 50px;
 }
