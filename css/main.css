@@ -48,15 +48,34 @@ header {
     grid-area: viewport;
     margin: 10px 10px 0 10px;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 10vw);
+    grid-template-rows: repeat(4, 15vh);
     grid-template-areas: 
         "item1 . . . item4"
         ". . item2 . ."
         ". . . . item3"
         ". . item5 . .";
+    position: relative;
+    overflow: hidden;
+}
+
+#backdrop {
+    grid-column: 1 / span 5;
+    grid-row: 1 / span 4;
     background-image: url(assets/elle.ollo.png);
     background-size: cover;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.items {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    place-self: center;
     position: relative;
 }
 
@@ -79,14 +98,6 @@ button {
 #item1Shadow, #item2Shadow, #item3Shadow, #item4Shadow, #item5Shadow, #item6Shadow, #item7Shadow, #item8Shadow, #item9Shadow, #item10Shadow {
     width: 50px;
     height: 50px;
-}
-
-.items {
-    width: 50px;
-    height: 50px;
-    display: flex;
-    place-self: center;
-    position: relative;
 }
 
 #item1 {
