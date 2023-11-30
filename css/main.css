@@ -10,20 +10,36 @@ body {
 
 main {
     display: grid;
-    grid-template-columns: ;
-    grid-template-rows: ;
-    grid-template-areas: ;
+    grid-template-columns: 10vw 10vw 10vw 10vw 10vw 10vw 10vw 10vw;
+    grid-template-rows: 5vh 15vh 15vh 15vh 15vh 15vh;
+    grid-template-areas: 
+        "header header header header header header header header"
+        "rules rules rules backdrop backdrop backdrop backdrop backdrop"
+        "rules rules rules backdrop backdrop backdrop backdrop backdrop"
+        "rules rules rules backdrop backdrop backdrop backdrop backdrop"
+        "rules rules rules shadows shadows shadows shadows shadows"
+        "rules rules rules shadows shadows shadows shadows shadows";
 }
 
 header {
     grid-area: header;
     display: flex;
-    background-color: brown;
+    background-color: rgb(12, 107, 28);
     color: white;
 }
 
 .gameRules {
     grid-area: rules;
     display: flex;
-    background-color: burlywood;
+    background-color: rgb(250, 242, 230);
+}
+
+.backdrop {
+    grid-area: backdrop;
+    background-color: rgb(22, 63, 67);
+}
+
+.shadows {
+    grid-area: shadows;
+    background-color: rgb(147, 183, 207);
 }
