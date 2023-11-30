@@ -41,7 +41,14 @@
 // renderIdol -> show "found" idol and activate getWinner + renderResults)
 // renderCountdown -> display countdown to user
 // setup timer -> set how timer state progresses, if else if
+
 // handleChoice -> player selects move (pair with event listener)
+function changeZIndex(element) {
+    const elements = document.querySelector(cssElement)
+    // loop here and set starting z index
+    // set clicked element to ending z index
+}
+
 // startOver -> returns items to img (invoked if player invokes renderResults out of order)(timer continues to run)
 // getWinner -> determine if player wins (if all renderResults are invoked OR if renderIdol is invoked)
 // getLoser -> determines if player loses (if timer function ends before renderResults + renderIdol are invoked)
@@ -51,4 +58,9 @@
 // hover over start button
 // when start button is clicked
 // when item is clicked
+elements.forEach(element => {
+    element.addEventListener('click', function() {
+        changeZIndex(this)
+    })
+})
 // when idol is clicked
