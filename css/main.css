@@ -5,7 +5,11 @@
 
 body {
     height: 100vh;
-    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
 }
 
 main {
@@ -24,6 +28,8 @@ main {
 header {
     grid-area: header;
     display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: rgb(12, 107, 28);
     color: white;
 }
@@ -31,6 +37,9 @@ header {
 .gameRules {
     grid-area: rules;
     display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 5vh;
     background-color: rgb(250, 242, 230);
 }
 
@@ -42,4 +51,9 @@ header {
 .shadows {
     grid-area: shadows;
     background-color: rgb(147, 183, 207);
+}
+
+button {
+    height: 30px;
+    width: 100px;
 }
