@@ -43,14 +43,14 @@
 // setup timer -> set how timer state progresses, if else if
 
 // handleChoice -> player selects move (pair with event listener)
-function changeZIndx(element) {
-    const elements = document.querySelector(cssElement)
+function changeZIndex(item) {
+    const items = document.querySelector('.items') // all elements with class items
     // loop here and set starting z index
-    elements.forEach(el => {
-        el.style.zIndx = '-2';
+    items.forEach(itm => {
+        itm.style.zIndex = '0';
     })
     // set clicked element to ending z index
-    element.style.zIndx = '0';
+    item.style.zIndex = '-2';
 }
 
 // startOver -> returns items to img (invoked if player invokes renderResults out of order)(timer continues to run)
@@ -62,9 +62,9 @@ function changeZIndx(element) {
 // hover over start button
 // when start button is clicked
 // when item is clicked
-elements.forEach(element => {
-    element.addEventListener('click', function() {
-        changeZIndx(this)
+items.forEach(item => {
+    item.addEventListener('click', function() {
+        changeZIndex(this)
     })
 })
 // when idol is clicked
