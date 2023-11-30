@@ -18,10 +18,10 @@ main {
     grid-template-rows: 5vh 15vh 15vh 15vh 15vh 15vh;
     grid-template-areas: 
         "header header header header header header header header"
-        "rules rules rules backdrop backdrop backdrop backdrop backdrop"
-        "rules rules rules backdrop backdrop backdrop backdrop backdrop"
-        "rules rules rules backdrop backdrop backdrop backdrop backdrop"
-        "rules rules rules backdrop backdrop backdrop backdrop backdrop"
+        "rules rules rules viewport viewport viewport viewport viewport"
+        "rules rules rules viewport viewport viewport viewport viewport"
+        "rules rules rules viewport viewport viewport viewport viewport"
+        "rules rules rules viewport viewport viewport viewport viewport"
         "rules rules rules shadows shadows shadows shadows shadows";
 }
 
@@ -45,7 +45,7 @@ header {
 }
 
 .viewport {
-    grid-area: backdrop;
+    grid-area: viewport;
     margin: 10px 10px 0 10px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
