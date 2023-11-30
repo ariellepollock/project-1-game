@@ -21,7 +21,7 @@ main {
         "rules rules rules backdrop backdrop backdrop backdrop backdrop"
         "rules rules rules backdrop backdrop backdrop backdrop backdrop"
         "rules rules rules backdrop backdrop backdrop backdrop backdrop"
-        "rules rules rules shadows shadows shadows shadows shadows"
+        "rules rules rules backdrop backdrop backdrop backdrop backdrop"
         "rules rules rules shadows shadows shadows shadows shadows";
 }
 
@@ -37,23 +37,72 @@ header {
 .gameRules {
     grid-area: rules;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding-top: 5vh;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 3vh 4vw;
     background-color: rgb(250, 242, 230);
 }
 
-.backdrop {
+.viewport {
     grid-area: backdrop;
-    background-color: rgb(22, 63, 67);
+    margin: 10px 10px 0 10px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-areas: 
+        "item1 . . . item4"
+        ". . item2 . ."
+        ". . . . item3"
+        ". . item5 . .";
+    background-color: dimgray;
+}
+
+.items {
 }
 
 .shadows {
     grid-area: shadows;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0 10px 10px 10px;
     background-color: rgb(147, 183, 207);
 }
 
 button {
     height: 30px;
     width: 100px;
+}
+
+#item1Shadow, #item2Shadow, #item3Shadow, #item4Shadow, #item5Shadow, #item6Shadow, #item7Shadow, #item8Shadow, #item9Shadow, #item10Shadow {
+    width: 50px;
+    height: 50px;
+}
+
+#item1, #item2, #item3, #item4, #item5 {
+    width: 50px;
+    height: 50px;
+}
+
+#item1 {
+    grid-area: item1;
+}
+
+#item2 {
+    grid-area: item2;
+}
+
+#item3 {
+    grid-area: item3;
+}
+
+#item4 {
+    grid-area: item4;
+}
+
+#item5 {
+    grid-area: item5;
 }
