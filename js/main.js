@@ -14,17 +14,8 @@
 
 
 /*------ CONSTANTS ------*/
-// const item1
-// const item2
-// const item3
-// const item4
-// const item5
-// const item6
-// const item7
-// const item8
-// const item9
-// const item10
-// const idol
+// audio file to play during last x-seconds of countdown
+const AUDIO = new Audio()
 
 
 /*------ STATE VARIABLES ------*/
@@ -44,7 +35,7 @@
 
 // handleChoice -> player selects move (pair with event listener)
 function changeZIndex(item) {
-    const items = document.querySelector('.items') // all elements with class items
+    const items = document.querySelectorAll('.items') // all elements with the class 'items'
     // loop here and set starting z index
     items.forEach(itm => {
         itm.style.zIndex = '0';
@@ -67,4 +58,6 @@ items.forEach(item => {
         changeZIndex(this)
     })
 })
+// when extra item is clicked
 // when idol is clicked
+// when snake is clicked
