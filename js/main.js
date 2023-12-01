@@ -26,12 +26,11 @@ const foundItms = document.querySelectorAll('.found')
 
 /*------ FUNCTIONS ------*/
 // initializer -> set up initial state when button is pushed (with event listener)
-// renderResults -> show "found" items
 // renderIdol -> show "found" idol and activate getWinner + renderResults)
 // renderCountdown -> display countdown to user
 // setup timer -> set how timer state progresses, if else if
 
-// changeFoundZIndex -> shadow item changes z-index to -2 (pair with changeZIndex function)
+
 function revealFoundEls() {
     foundItms.forEach(found => {
         found.classList.add('found')
@@ -39,11 +38,12 @@ function revealFoundEls() {
 }
 
 // changeZIndex -> player selects board item (pair with event listener)
-function changeZIndex() {
-    if (this.style.zIndex !== '-2') {
-        this.style.zIndex = '-2'
+function changeZIndex(event) {
+    const clickedItm = event.target
+    if (clickedItm.style.zIndex !== '-2') {
+        clickedItm.style.zIndex = '-2'
         revealItem1Found()
-        if (this.id === 'item1') {
+        if (clickedItm.id === 'item1') {
             const corrFound = document.getElementById('item1Found')
             if (corrFound) {
                 corrFound.style.zIndex = '4'
@@ -52,6 +52,7 @@ function changeZIndex() {
     }
 }
 
+// show found item
 function revealItem1Found() {
     const foundEl = document.getElementById('item1Found')
     foundEl.style.display = 'block'
@@ -69,7 +70,7 @@ function revealItem1Found() {
 // when start button is clicked
 // when item is clicked
 items.forEach(item => {
-    item.addEventListener('click', revealFoundEls)
+    item.addEventListener('click', changeZIndex)
 })
 // when extra item is clicked
 // when idol is clicked
