@@ -21,8 +21,8 @@ const AUDIO = new Audio()
 
 
 /*------ CACHED DOM ELEMENTS ------*/
-const items = document.querySelectorAll('.items') // all elements with the class 'items'
-
+const items = document.querySelectorAll('.items')
+const foundItms = document.querySelectorAll('.found')
 
 /*------ FUNCTIONS ------*/
 // initializer -> set up initial state when button is pushed (with event listener)
@@ -31,16 +31,33 @@ const items = document.querySelectorAll('.items') // all elements with the class
 // renderCountdown -> display countdown to user
 // setup timer -> set how timer state progresses, if else if
 
-// changeZIndex -> player selects board item (pair with event listener)
+// changeFoundZIndex -> shadow item changes z-index to -2 (pair with changeZIndex function)
+function revealFoundEls() {
+    foundItms.forEach(found => {
+        found.classList.add('found')
+    })
+}
 
+// changeZIndex -> player selects board item (pair with event listener)
 function changeZIndex() {
-    // loop here and set starting z index
     if (this.style.zIndex !== '-2') {
-        this.style.zIndex = '-2';
+        this.style.zIndex = '-2'
+        revealItem1Found()
+        if (this.id === 'item1') {
+            const corrFound = document.getElementById('item1Found')
+            if (corrFound) {
+                corrFound.style.zIndex = '4'
+            }
+        }
     }
 }
 
-// changeShadowZIndex -> shadow item changes z-index to -2 (pair with changeZIndex function)
+function revealItem1Found() {
+    const foundEl = document.getElementById('item1Found')
+    foundEl.style.display = 'block'
+}
+
+
 
 // startOver -> returns items to img (invoked if player invokes renderResults out of order)(timer continues to run)
 // getWinner -> determine if player wins (if all renderResults are invoked OR if renderIdol is invoked)
@@ -52,7 +69,7 @@ function changeZIndex() {
 // when start button is clicked
 // when item is clicked
 items.forEach(item => {
-    item.addEventListener('click', changeZIndex)
+    item.addEventListener('click', revealFoundEls)
 })
 // when extra item is clicked
 // when idol is clicked
