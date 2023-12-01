@@ -24,12 +24,38 @@ const AUDIO = new Audio()
 const items = document.querySelectorAll('.items')
 const foundItms = document.querySelectorAll('.found')
 
+// button and timer elements
+const startButton = document.getElementById('startTimer')
+const timeDisplay = document.getElementById('timer')
+
+let timeRemain = 120;
+let timeInt
+
 /*------ FUNCTIONS ------*/
 // initializer -> set up initial state when button is pushed (with event listener)
 // renderIdol -> show "found" idol and activate getWinner + renderResults)
+
 // renderCountdown -> display countdown to user
 // setup timer -> set how timer state progresses, if else if
+function startTimer() {
+    timeInt = setInterval(updateTime, 1000)
+}
 
+function updateTime() {
+    const minutes = Math.floor(timeRemain / 60)
+    let seconds = timeRemain % 60
+
+    seconds = seconds < 10 ? `0${seconds}` : seconds
+
+    timeDisplay.textContent = `0${minutes}:${seconds}`
+
+    if (timeRemain === 0) {
+        clearInterval(timeInt)
+        alert('Loss Message!')
+    } else {
+        timeRemain--
+    }
+}
 
 function revealFoundEls() {
     foundItms.forEach(found => {
@@ -72,6 +98,8 @@ function revealItem1Found() {
 items.forEach(item => {
     item.addEventListener('click', changeZIndex)
 })
+
+startButton.addEventListener('click', startTimer)
 // when extra item is clicked
 // when idol is clicked
 // when snake is clicked
