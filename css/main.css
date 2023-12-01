@@ -83,12 +83,25 @@ header {
 .shadowCtr {
     grid-area: shadows;
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
-    margin: 0 10px 10px 10px;
     background-color: rgb(147, 183, 207);
+    z-index: 1;
+    margin: 10px;
+    padding: 10px;
+}
+
+.foundCtr {
+    grid-area: shadows;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: black;
+    z-index: 0;
+    margin: 10px;
+    padding: 10px;
 }
 
 button {
@@ -97,6 +110,11 @@ button {
 }
 
 .shadow {
+    width: 50px;
+    height: 50px;
+}
+
+.found {
     width: 50px;
     height: 50px;
 }
