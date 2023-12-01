@@ -86,9 +86,9 @@ header {
     grid-template-columns: repeat(10, 1fr);
     justify-items: center;
     align-items: center;
+    gap: 10px;
     z-index: 0;
     margin: 10px;
-    padding: 10px;
 }
 
 .shadow {
@@ -106,11 +106,6 @@ header {
     height: 50px;
     z-index: 3;
     display: none;
-}
-
-button {
-    height: 30px;
-    width: 100px;
 }
 
 #item1 {
@@ -132,4 +127,9 @@ button {
 
 #item5 {
     grid-area: item5;
+}
+
+button {
+    height: 30px;
+    width: 100px;
 }
