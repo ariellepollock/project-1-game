@@ -1,15 +1,13 @@
-// read the directions and press start to see the clues AND start the timer
-// read the first clue
-// look for the item that belongs to the clue
-// use the hint button if stuck (hint will provide more directions/details on where to find the item)
-// when the item is found, click on it
-// when the item is clicked a border will appear around the item to signal it's been found
-// when the mouse is released from the click the item will fill in the gray silhouette next to its clue
-// repeat steps 2-7 until all items have been found (unless immunity idol is found or player receives losing message)
+// read the directions and press start button to start the timer + the game
+// hover over silhouettes to recieve clue as to what the item might be 
+// when the item is "found", click on it
+// when the item is clicked the item will show up in place of it's corresponding silhouette
+// repeat steps 2-4 until all items have been found (unless immunity idol or snake are "found")
+// click on extra items to display message: nice but not what you're looking for
 // win message if all items have been found before the timer runs out
 // win message if immunity idol is found (can be at any point in the game)
 // better luck next time if timer runs out before all items have been found
-// losing message if player trys to skip ahead, costs them by having to start over while the timer is still running
+// game over message if snake is found
 
 
 
@@ -23,7 +21,7 @@ const AUDIO = new Audio()
 
 
 /*------ CACHED DOM ELEMENTS ------*/
-
+const items = document.querySelectorAll('.items') // all elements with the class 'items'
 
 
 /*------ FUNCTIONS ------*/
@@ -33,16 +31,16 @@ const AUDIO = new Audio()
 // renderCountdown -> display countdown to user
 // setup timer -> set how timer state progresses, if else if
 
-// handleChoice -> player selects move (pair with event listener)
-function changeZIndex(item) {
-    const items = document.querySelectorAll('.items') // all elements with the class 'items'
+// changeZIndex -> player selects board item (pair with event listener)
+
+function changeZIndex() {
     // loop here and set starting z index
-    items.forEach(itm => {
-        itm.style.zIndex = '0';
-    })
-    // set clicked element to ending z index
-    item.style.zIndex = '-2';
+    if (this.style.zIndex !== '-2') {
+        this.style.zIndex = '-2';
+    }
 }
+
+// changeShadowZIndex -> shadow item changes z-index to -2 (pair with changeZIndex function)
 
 // startOver -> returns items to img (invoked if player invokes renderResults out of order)(timer continues to run)
 // getWinner -> determine if player wins (if all renderResults are invoked OR if renderIdol is invoked)
@@ -54,9 +52,7 @@ function changeZIndex(item) {
 // when start button is clicked
 // when item is clicked
 items.forEach(item => {
-    item.addEventListener('click', function() {
-        changeZIndex(this)
-    })
+    item.addEventListener('click', changeZIndex)
 })
 // when extra item is clicked
 // when idol is clicked
