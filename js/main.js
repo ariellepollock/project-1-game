@@ -30,6 +30,19 @@ const toFoundMap = {
     item10: 'item10Found',
 }
 
+const toShadowMap = {
+    'item1Shadow': 'item1Found',
+    'item2Shadow': 'item2Found',
+    'item3Shadow': 'item3Found',
+    'item4Shadow': 'item4Found',
+    'item5Shadow': 'item5Found',
+    'item6Shadow': 'item6Found',
+    'item7Shadow': 'item7Found',
+    'item8Shadow': 'item8Found',
+    'item9Shadow': 'item9Found',
+    'item10Shadow': 'item10Found',
+}
+
 
 /*------ CACHED DOM ELEMENTS ------*/
 const items = document.querySelectorAll('.items')
@@ -74,6 +87,19 @@ function revealFoundEls() {
     })
 }
 
+// positioning item to shadow location
+function alignFound() {
+    for (const shadowItm in toShadowMap) {
+        const foundItm = document.getElementById(toFoundMap[shadowItm])
+        const shadowPos = document.getElementById(shadowItm).getBoundingClientRect()
+        if (foundItm) {
+            foundItm.style.position = 'absolute'
+            foundItm.style.left = `${shadowPos.left}px`
+            foundItm.style.top = `${shadowPos.top}px`
+        }
+    }
+}
+
 // changeZIndex -> player selects board item (pair with event listener)
 function changeZIndex(event) {
     const clickedItm = event.target
@@ -92,10 +118,21 @@ function changeZIndex(event) {
     }
 }
 
+alignFound()
+
 // show found item
 function revealItmFound(foundItmId) {
     const foundEl = document.getElementById(foundItmId)
-    foundEl.style.display = 'block'
+    foundEl.classList.add('foundVisible')
+    
+    // get corresponding shadow item
+    const shadowId = Object.keys(toFoundMap).find(key => toFoundMap[key] === foundItmId)
+    const shadowPos = document.getElementById(`${shadowId}shadow`).getBoundingClientRect()
+
+    // position found item at shadow item location
+    foundEl.style.position = 'absolute'
+    foundEl.style.left = `${shadowPos.left}px`
+    foundEl.style.top = `${shadowPos.top}`
 }
 
 
@@ -107,15 +144,13 @@ function revealItmFound(foundItmId) {
 
 /*------ EVENT LISTENERS ------*/
 // hover over start button
-// when start button is clicked
-// when item is clicked
-//items.forEach(item => {
-//    item.addEventListener('click', changeZIndex)
-//})
 
+// when item is clicked
 document.querySelector('.viewport').addEventListener('click', changeZIndex)
 
+// when start button is clicked
 startButton.addEventListener('click', startTimer)
+
 // when extra item is clicked
 // when idol is clicked
 // when snake is clicked
