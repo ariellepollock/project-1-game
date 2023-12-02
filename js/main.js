@@ -130,11 +130,9 @@ function revealItmFound(foundItmId) {
 
     // position found item at shadow item location
     foundEl.style.position = 'absolute'
-    foundEl.style.left = `${shadowPos.left}px`
-    foundEl.style.top = `${shadowPos.top}px`
+    foundEl.style.left = `${shadowPos.left + window.scrollX}px`
+    foundEl.style.top = `${shadowPos.top + window.scrollY}px`
 }
-
-
 
 // startOver -> returns items to img (invoked if player invokes renderResults out of order)(timer continues to run)
 // getWinner -> determine if player wins (if all renderResults are invoked OR if renderIdol is invoked)
@@ -146,6 +144,14 @@ function revealItmFound(foundItmId) {
 
 // when item is clicked
 document.querySelector('.viewport').addEventListener('click', changeZIndex)
+
+// align found items when browser changes
+window.addEventListener('resize', () => {
+    const updatedShadowPos = document.getElementById(`${shadowId}Shadow`).getBoundingClientRect()
+    foundEl.style.left = `${updatedShadowPos.left + window.scrollX}px`
+    foundEl.style.top = `${updatedShadowPos.top + window.scrollY}px`
+})
+
 
 // when start button is clicked
 startButton.addEventListener('click', startTimer)
