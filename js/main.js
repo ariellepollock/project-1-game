@@ -17,7 +17,10 @@ const AUDIO = new Audio()
 
 
 /*------ STATE VARIABLES ------*/
-// array iterator methods for state/location of items
+const toFoundMap = {
+    item1: 'item1Found',
+    item2: 'item2Found',
+}
 
 
 /*------ CACHED DOM ELEMENTS ------*/
@@ -51,7 +54,7 @@ function updateTime() {
 
     if (timeRemain === 0) {
         clearInterval(timeInt)
-        alert('Loss Message!')
+        alert('Loss Message!') // placeholder alert
     } else {
         timeRemain--
     }
@@ -66,11 +69,14 @@ function revealFoundEls() {
 // changeZIndex -> player selects board item (pair with event listener)
 function changeZIndex(event) {
     const clickedItm = event.target
+    if (!clickedItm.classList.contains('items')) return
+
     if (clickedItm.style.zIndex !== '-2') {
         clickedItm.style.zIndex = '-2'
-        revealItem1Found()
-        if (clickedItm.id === 'item1') {
-            const corrFound = document.getElementById('item1Found')
+        const matchFound = toFoundMap[clickedItm.id]
+        if (matchFound) {
+            revealItmFound(matchFound)
+            const corrFound = document.getElementById(matchFound)
             if (corrFound) {
                 corrFound.style.zIndex = '4'
             }
@@ -79,8 +85,8 @@ function changeZIndex(event) {
 }
 
 // show found item
-function revealItem1Found() {
-    const foundEl = document.getElementById('item1Found')
+function revealItmFound(foundItmId) {
+    const foundEl = document.getElementById(foundItmId)
     foundEl.style.display = 'block'
 }
 
@@ -95,9 +101,11 @@ function revealItem1Found() {
 // hover over start button
 // when start button is clicked
 // when item is clicked
-items.forEach(item => {
-    item.addEventListener('click', changeZIndex)
-})
+//items.forEach(item => {
+//    item.addEventListener('click', changeZIndex)
+//})
+
+document.querySelector('.viewport').addEventListener('click', changeZIndex)
 
 startButton.addEventListener('click', startTimer)
 // when extra item is clicked

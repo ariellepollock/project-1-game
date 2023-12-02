@@ -51,10 +51,10 @@ header {
     grid-template-columns: repeat(5, 10vw);
     grid-template-rows: repeat(4, 15vh);
     grid-template-areas: 
-        "item1 . . . item4"
+        "item1 . item10 . item4"
         ". . item2 . ."
-        ". . . . item3"
-        ". . item5 . .";
+        "item7 . item6 . item3"
+        "item8 . item5 item9 .";
     position: relative;
     overflow: hidden;
 }
@@ -127,6 +127,26 @@ header {
 
 #item5 {
     grid-area: item5;
+}
+
+#item6 {
+    grid-area: item6;
+}
+
+#item7 {
+    grid-area: item7;
+}
+
+#item8 {
+    grid-area: item8;
+}
+
+#item9 {
+    grid-area: item9;
+}
+
+#item10 {
+    grid-area: item10;
 }
 
 button {
