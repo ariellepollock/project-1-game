@@ -20,6 +20,14 @@ const AUDIO = new Audio()
 const toFoundMap = {
     item1: 'item1Found',
     item2: 'item2Found',
+    item3: 'item3Found',
+    item4: 'item4Found',
+    item5: 'item5Found',
+    item6: 'item6Found',
+    item7: 'item7Found',
+    item8: 'item8Found',
+    item9: 'item9Found',
+    item10: 'item10Found',
 }
 
 
