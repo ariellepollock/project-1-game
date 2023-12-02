@@ -106,12 +106,15 @@ header {
     height: 50px;
     z-index: 3;
     display: none;
+    position: absolute;
     transition: opacity 0.5s ease-in-out;
 }
 
 .foundVisible {
     display: block;
     opacity: 1;
+    left: 0;
+    top: 0;
 }
 
 #item1 {

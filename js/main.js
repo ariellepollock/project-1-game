@@ -117,7 +117,6 @@ function changeZIndex(event) {
         }
     }
 }
-
 alignFound()
 
 // show found item
@@ -127,12 +126,12 @@ function revealItmFound(foundItmId) {
     
     // get corresponding shadow item
     const shadowId = Object.keys(toFoundMap).find(key => toFoundMap[key] === foundItmId)
-    const shadowPos = document.getElementById(`${shadowId}shadow`).getBoundingClientRect()
+    const shadowPos = document.getElementById(`${shadowId}Shadow`).getBoundingClientRect()
 
     // position found item at shadow item location
     foundEl.style.position = 'absolute'
     foundEl.style.left = `${shadowPos.left}px`
-    foundEl.style.top = `${shadowPos.top}`
+    foundEl.style.top = `${shadowPos.top}px`
 }
 
 
