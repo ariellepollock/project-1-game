@@ -83,8 +83,7 @@ h1 img {
 }
 
 .items {
-    width: 50px;
-    height: 50px;
+    width: 5vh;
     display: flex;
     place-self: center;
     position: relative;
@@ -94,18 +93,24 @@ h1 img {
 .shadowCtr, .foundCtr {
     grid-area: shadows;
     display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    justify-items: center;
+    grid-template-columns: repeat(10, 50px);
     align-items: center;
-    gap: 10px;
+    justify-content: space-evenly;
     z-index: 0;
-    margin: 10px;
+    padding: 1vw;
 }
 
 .shadow {
-    width: 50px;
-    height: 50px;
+    width: 5vh;
     z-index: 1;
+    display: flex;
+    place-self: center;
+    position: relative;
+}
+
+.shadow img {
+    width: 100%;
+    object-fit: contain;
 }
 
 .foundCtr {
@@ -113,12 +118,16 @@ h1 img {
 }
 
 .found {
-    width: 50px;
-    height: 50px;
+    width: 5vh;
     z-index: 3;
     display: none;
     position: absolute;
     transition: opacity 0.5s ease-in-out;
+}
+
+.found img {
+    width: 100%;
+    object-fit: contain;
 }
 
 .foundVisible {
@@ -126,8 +135,7 @@ h1 img {
     opacity: 1;
     left: 0;
     top: 0;
-    width: 50px;
-    height: 50px;
+    width: 5vh;
 }
 
 #item1 {
@@ -179,4 +187,23 @@ button {
     border: none;
     color: white;
     margin-top: 20px;
+}
+
+.shadow:hover::before {
+    content: "hint: goes here and will change per item";
+    position: absolute;
+    background-color: lightblue;
+    color:#011320;
+    padding: 5px;
+    border-radius: 5px;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.shadow:hover::before {
+    opacity: 1;
 }
