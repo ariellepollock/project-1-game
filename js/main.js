@@ -57,11 +57,17 @@ const timeDisplay = document.getElementById('timer')
 let timeRemain = 120;
 let timeInt
 
+
 /*------ FUNCTIONS ------*/
 // initializer -> set up initial state when button is pushed (with event listener)
+function initItmClick() {
+    items.forEach(item => {
+        item.addEventListener('click', changeZIndex)
+    })
+}
+
 // renderIdol -> show "found" idol and activate getWinner + renderResults)
 
-// renderCountdown -> display countdown to user
 // setup timer -> set how timer state progresses, if else if
 function startTimer() {
     timeInt = setInterval(updateTime, 1000)
@@ -117,6 +123,9 @@ function alignFound() {
 
 // changeZIndex -> player selects board item (pair with event listener)
 function changeZIndex(event) {
+    // check if game has been initialized
+    if (!timeInt) return
+
     const clickedItm = event.target
     if (!clickedItm.classList.contains('items')) return
 
@@ -175,7 +184,10 @@ window.addEventListener('resize', () => {
 
 
 // when start button is clicked
-startButton.addEventListener('click', startTimer)
+startButton.addEventListener('click', () => {
+    startTimer()
+    initItmClick()
+})
 
 // when extra item is clicked
 // when idol is clicked
