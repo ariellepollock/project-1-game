@@ -67,6 +67,13 @@ function startTimer() {
     timeInt = setInterval(updateTime, 1000)
 }
 
+function winMessage() {
+    const resultMessage = document.querySelector('.gameRules h2')
+    resultMessage.textContent = 'You Win!'
+
+    clearInterval(timeInt) // stop timer
+}
+
 function updateTime() {
     // timer logic
     const minutes = Math.floor(timeRemain / 60)
@@ -78,14 +85,15 @@ function updateTime() {
 
     if (timeRemain === 0) {
         clearInterval(timeInt)
-        if (clickedItms === Object.keys(toFoundMap).length) {
-            winMessage()
-        } else {
-            lossMessage()
-        }
+        lossMessage()
     } else {
         timeRemain--
     }
+}
+
+function lossMessage() {
+    const resultMessage = document.querySelector('.gameRules h2')
+    resultMessage.textContent = 'You Lose!'
 }
 
 function revealFoundEls() {
