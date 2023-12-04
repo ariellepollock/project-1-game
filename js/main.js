@@ -46,6 +46,9 @@ const toShadowMap = {
 // count clicked items
 let clickedItms = 0
 
+// track game state (to eventually restart game)
+let gameStarted = false
+
 /*------ CACHED DOM ELEMENTS ------*/
 const items = document.querySelectorAll('.items')
 const foundItms = document.querySelectorAll('.found')
@@ -164,6 +167,13 @@ function revealItmFound(foundItmId) {
     foundEl.style.top = `${shadowPos.top + window.scrollY}px`
 }
 
+// reset game function
+function resetGame() {
+    clearInterval(timeInt) // clear timer
+    timeRemain = 120 // reset time
+    clickedItms = 0 // reset items back to board
+}
+
 // startOver -> returns items to img (invoked if player invokes renderResults out of order)(timer continues to run)
 // getWinner -> determine if player wins (if all renderResults are invoked OR if renderIdol is invoked)
 // getLoser -> determines if player loses (if timer function ends before renderResults + renderIdol are invoked)
@@ -185,8 +195,16 @@ window.addEventListener('resize', () => {
 
 // when start button is clicked
 startButton.addEventListener('click', () => {
-    startTimer()
-    initItmClick()
+    if (!gameStarted) {
+        startTimer()
+        initItmClick()
+        startButton.textContent = 'GO BACK & START OVER!'
+    } else {
+        // reset game board
+        resetGame()
+        startButton.textContent = 'SURVIVORS READY? GO!'
+    }
+    gameStarted = !gameStarted // game state    
 })
 
 // when extra item is clicked
