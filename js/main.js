@@ -172,6 +172,7 @@ function resetGame() {
     clearInterval(timeInt) // clear timer
     timeRemain = 120 // reset time
     clickedItms = 0 // reset items back to board
+    timeDisplay.textContent = '02:00' // reset displayed time
 }
 
 // startOver -> returns items to img (invoked if player invokes renderResults out of order)(timer continues to run)
@@ -199,10 +200,12 @@ startButton.addEventListener('click', () => {
         startTimer()
         initItmClick()
         startButton.textContent = 'GO BACK & START OVER!'
+        startButton.style.backgroundColor = '#026ab2'
     } else {
         // reset game board
         resetGame()
         startButton.textContent = 'SURVIVORS READY? GO!'
+        startButton.style.backgroundColor = '#011320'
     }
     gameStarted = !gameStarted // game state    
 })
