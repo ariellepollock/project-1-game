@@ -43,6 +43,8 @@ const toShadowMap = {
     'item10Shadow': 'item10Found',
 }
 
+// count clicked items
+let clickedItms = 0
 
 /*------ CACHED DOM ELEMENTS ------*/
 const items = document.querySelectorAll('.items')
@@ -66,6 +68,7 @@ function startTimer() {
 }
 
 function updateTime() {
+    // timer logic
     const minutes = Math.floor(timeRemain / 60)
     let seconds = timeRemain % 60
 
@@ -75,7 +78,11 @@ function updateTime() {
 
     if (timeRemain === 0) {
         clearInterval(timeInt)
-        alert('Loss Message!') // placeholder alert
+        if (clickedItms === Object.keys(toFoundMap).length) {
+            winMessage()
+        } else {
+            lossMessage()
+        }
     } else {
         timeRemain--
     }
@@ -113,8 +120,14 @@ function changeZIndex(event) {
             const corrFound = document.getElementById(matchFound)
             if (corrFound) {
                 corrFound.style.zIndex = '4'
+                clickedItms++ // increment clicked items
             }
         }
+    }
+
+    // check if ALL items have been 'clicked'
+    if (clickedItms === Object.keys(toFoundMap).length) {
+        winMessage() // function for displaying win message
     }
 }
 alignFound()
