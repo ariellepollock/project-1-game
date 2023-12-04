@@ -44,6 +44,16 @@ header {
     background-color: rgb(250, 242, 230);
 }
 
+h1 {
+    text-align: center;
+    margin-bottom: 0;
+}
+
+h1 img {
+    max-width: 90%;
+    height: auto;
+}
+
 .viewport {
     grid-area: viewport;
     margin: 10px 10px 0 10px;
@@ -162,5 +172,10 @@ header {
 
 button {
     height: 30px;
-    width: 100px;
+    width: 200px;
+    background-color: midnightblue;
+    border-radius: 7px;
+    border: none;
+    color: white;
+    margin-top: 20px;
 }
