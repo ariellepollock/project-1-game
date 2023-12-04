@@ -127,7 +127,7 @@ function alignFound() {
 // changeZIndex -> player selects board item (pair with event listener)
 function changeZIndex(event) {
     // check if game has been initialized
-    if (!timeInt) return
+    if (!gameStarted || !timeInt) return
 
     const clickedItm = event.target
     if (!clickedItm.classList.contains('items')) return
@@ -171,8 +171,26 @@ function revealItmFound(foundItmId) {
 function resetGame() {
     clearInterval(timeInt) // clear timer
     timeRemain = 120 // reset time
-    clickedItms = 0 // reset items back to board
     timeDisplay.textContent = '02:00' // reset displayed time
+    clickedItms = 0 // reset items back to board
+    startButton.textContent = 'SURVIVORS READY? GO!' // reset button message
+    startButton.style.backgroundColor = '#011320' // reset button color
+    // reset win/loss message
+    const resultMessage = document.querySelector('.gameRules h2')
+    resultMessage.textContent = '' // reset to empty string aka no message
+
+    // reset item styles and found item styles
+    items.forEach(item => {
+        item.style.zIndex = '0'
+    })
+
+    foundItms.forEach(found => {
+        found.classList.remove('foundVisible')
+        found.style.position = 'absolute'
+
+        found.style.left = 'initial'
+        found.style.top = 'initial'
+    })
 }
 
 // startOver -> returns items to img (invoked if player invokes renderResults out of order)(timer continues to run)
@@ -204,8 +222,6 @@ startButton.addEventListener('click', () => {
     } else {
         // reset game board
         resetGame()
-        startButton.textContent = 'SURVIVORS READY? GO!'
-        startButton.style.backgroundColor = '#011320'
     }
     gameStarted = !gameStarted // game state    
 })
