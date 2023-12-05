@@ -73,8 +73,6 @@ h1 img {
 #backdrop {
     grid-column: 1 / span 5;
     grid-row: 1 / span 4;
-    background-image: url(assets/elle.ollo.png);
-    background-size: cover;
     position: absolute;
     height: 100%;
     width: 100%;
@@ -83,7 +81,7 @@ h1 img {
 }
 
 .items {
-    width: 7vh;
+    width: 8vh;
     display: flex;
     place-self: center;
     position: relative;
@@ -126,7 +124,6 @@ h1 img {
     z-index: 3;
     display: none;
     position: absolute;
-    transition: opacity 0.5s ease-in-out;
 }
 
 .found img {
@@ -194,9 +191,6 @@ button {
     cursor: pointer;
 }
 
-button:hover {
-    
-}
 
 
 

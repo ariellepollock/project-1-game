@@ -1,4 +1,4 @@
-// read the directions and press start button to start the timer + the game
+// read the directions and press button to start the timer + the game
 // hover over silhouettes to recieve clue as to what the item might be 
 // when the item is "found", click on it
 // when the item is clicked the item will show up in place of it's corresponding silhouette
@@ -69,13 +69,12 @@ function initItmClick() {
     })
 }
 
-// renderIdol -> show "found" idol and activate getWinner + renderResults)
-
 // setup timer -> set how timer state progresses, if else if
 function startTimer() {
     timeInt = setInterval(updateTime, 1000)
 }
 
+// win message function
 function winMessage() {
     const resultMessage = document.querySelector('.gameRules h2')
     resultMessage.textContent = 'Your tribe wins immunity!'
@@ -100,6 +99,7 @@ function updateTime() {
     }
 }
 
+// loss message function
 function lossMessage() {
     const resultMessage = document.querySelector('.gameRules h2')
     resultMessage.textContent = 'Got nothing for ya, grab your stuff head back to camp.'
@@ -111,7 +111,7 @@ function revealFoundEls() {
     })
 }
 
-// positioning item to shadow location
+// positioning found item to shadow location
 function alignFound() {
     for (const shadowItm in toShadowMap) {
         const foundItm = document.getElementById(toFoundMap[shadowItm])
@@ -124,7 +124,7 @@ function alignFound() {
     }
 }
 
-// changeZIndex -> player selects board item (pair with event listener)
+// changeZIndex -> player handle and changing z-index of items
 function changeZIndex(event) {
     // check if game has been initialized
     if (!gameStarted || !timeInt) return
@@ -159,9 +159,11 @@ function revealItmFound(foundItmId) {
     
     // get corresponding shadow item
     const shadowId = Object.keys(toFoundMap).find(key => toFoundMap[key] === foundItmId)
+
+    // get element position and size, use .getBoundingClientRect() method
     const shadowPos = document.getElementById(`${shadowId}Shadow`).getBoundingClientRect()
 
-    // position found item at shadow item location
+    // position found item at shadow items location
     foundEl.style.position = 'absolute'
     foundEl.style.left = `${shadowPos.left + window.scrollX}px`
     foundEl.style.top = `${shadowPos.top + window.scrollY}px`
@@ -175,6 +177,7 @@ function resetGame() {
     clickedItms = 0 // reset items back to board
     startButton.textContent = 'SURVIVORS READY? GO!' // reset button message
     startButton.style.backgroundColor = '#011320' // reset button color
+
     // reset win/loss message
     const resultMessage = document.querySelector('.gameRules h2')
     resultMessage.textContent = '' // reset to empty string aka no message
@@ -193,19 +196,12 @@ function resetGame() {
     })
 }
 
+// renderIdol -> show "found" idol and activate getWinner + renderResults)
 
 /*------ EVENT LISTENERS ------*/
 
 // when item is clicked
 document.querySelector('.viewport').addEventListener('click', changeZIndex)
-
-// align found items when browser changes
-window.addEventListener('resize', () => {
-    const updatedShadowPos = document.getElementById(`${shadowId}Shadow`).getBoundingClientRect()
-    foundEl.style.left = `${updatedShadowPos.left + window.scrollX}px`
-    foundEl.style.top = `${updatedShadowPos.top + window.scrollY}px`
-})
-
 
 // when start button is clicked
 startButton.addEventListener('click', () => {
