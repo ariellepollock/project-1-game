@@ -193,13 +193,8 @@ function resetGame() {
     })
 }
 
-// startOver -> returns items to img (invoked if player invokes renderResults out of order)(timer continues to run)
-// getWinner -> determine if player wins (if all renderResults are invoked OR if renderIdol is invoked)
-// getLoser -> determines if player loses (if timer function ends before renderResults + renderIdol are invoked)
-
 
 /*------ EVENT LISTENERS ------*/
-// hover over start button
 
 // when item is clicked
 document.querySelector('.viewport').addEventListener('click', changeZIndex)

@@ -42,7 +42,7 @@ header {
     align-items: center;
     margin-top: 10px;
     padding: 3vh 4vw;
-    background-color: rgb(250, 242, 230);
+    background-color: #fcdaa2;
 }
 
 h1 {
@@ -62,10 +62,10 @@ h1 img {
     grid-template-columns: repeat(5, 10vw);
     grid-template-rows: repeat(4, 15vh);
     grid-template-areas: 
-        "item1 . item10 . item4"
-        ". . item2 . ."
-        "item7 . item6 . item3"
-        "item8 . item5 item9 .";
+        ". item1 item10 . ."
+        ". . item2 item4 ."
+        ". item7 item6 . item3"
+        ". item8 item5 item9 .";
     position: relative;
     overflow: hidden;
 }
@@ -98,6 +98,10 @@ h1 img {
     justify-content: space-evenly;
     z-index: 0;
     padding: 1vw;
+}
+
+.shadowCtr {
+    position: relative;
 }
 
 .shadow {
@@ -187,23 +191,12 @@ button {
     border: none;
     color: white;
     margin-top: 20px;
+    cursor: pointer;
 }
 
-.shadow:hover::before {
-    content: "hint: goes here and will change per item";
-    position: absolute;
-    background-color: lightblue;
-    color:#011320;
-    padding: 5px;
-    border-radius: 5px;
-    top: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 12px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+button:hover {
+    
 }
 
-.shadow:hover::before {
-    opacity: 1;
-}
+
+
