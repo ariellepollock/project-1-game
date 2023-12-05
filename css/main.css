@@ -83,7 +83,7 @@ h1 img {
 }
 
 .items {
-    width: 5vh;
+    width: 7vh;
     display: flex;
     place-self: center;
     position: relative;
