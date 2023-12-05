@@ -102,6 +102,16 @@ h1 img {
     position: relative;
 }
 
+.hintMessage {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    background-color: aliceblue;
+    color:#011320;
+    padding: 10px;
+    border-radius: 5px;
+}
+
 .shadow {
     width: 5vh;
     z-index: 1;
@@ -113,6 +123,11 @@ h1 img {
 .shadow img {
     width: 100%;
     object-fit: contain;
+}
+
+.shadow:hover .hintMessage {
+    visibility: visible;
+    opacity: 1;
 }
 
 .foundCtr {
