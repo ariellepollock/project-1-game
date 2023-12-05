@@ -78,7 +78,7 @@ function startTimer() {
 
 function winMessage() {
     const resultMessage = document.querySelector('.gameRules h2')
-    resultMessage.textContent = 'You Win!'
+    resultMessage.textContent = 'Your tribe wins immunity!'
 
     clearInterval(timeInt) // stop timer
 }
@@ -102,7 +102,7 @@ function updateTime() {
 
 function lossMessage() {
     const resultMessage = document.querySelector('.gameRules h2')
-    resultMessage.textContent = 'You Lose!'
+    resultMessage.textContent = 'Got nothing for ya, grab your stuff head back to camp.'
 }
 
 function revealFoundEls() {

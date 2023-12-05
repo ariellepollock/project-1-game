@@ -184,8 +184,8 @@ h1 img {
 }
 
 button {
-    height: 30px;
-    width: 200px;
+    height: 4vh;
+    width: 25vh;
     background-color: #011320;
     border-radius: 7px;
     border: none;
