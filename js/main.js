@@ -50,8 +50,10 @@ let clickedItms = 0
 let gameStarted = false
 
 /*------ CACHED DOM ELEMENTS ------*/
+// get all elements with x class
 const items = document.querySelectorAll('.items')
 const foundItms = document.querySelectorAll('.found')
+const shadowItms = document.querySelectorAll('.shadow')
 
 // button and timer elements
 const startButton = document.getElementById('startTimer')
@@ -67,6 +69,17 @@ function initItmClick() {
     items.forEach(item => {
         item.addEventListener('click', changeZIndex)
     })
+}
+
+// function to show hint message
+function hintHover(hintMessage) {
+    console.log(hintMessage)
+    hintMessage.style.display = 'block'
+}
+
+// function to hide hint message
+function hintHide(hintMessage) {
+    hintMessage.style.display = 'none'
 }
 
 // setup timer -> set how timer state progresses, if else if
@@ -150,6 +163,7 @@ function changeZIndex(event) {
         winMessage() // function for displaying win message
     }
 }
+
 alignFound()
 
 // show found item
@@ -199,6 +213,18 @@ function resetGame() {
 // renderIdol -> show "found" idol and activate getWinner + renderResults)
 
 /*------ EVENT LISTENERS ------*/
+// when mouse moves over/off
+shadowItms.forEach(item => {
+    const hintMessage = item.querySelector('.hintMessage')
+
+    item.addEventListener('mouseover', () => {
+        hintHover(hintMessage)
+    })
+
+    item.addEventListener('mouseout', () => {
+        hintHide(hintMessage)
+    })
+})
 
 // when item is clicked
 document.querySelector('.viewport').addEventListener('click', changeZIndex)
@@ -216,6 +242,7 @@ startButton.addEventListener('click', () => {
     }
     gameStarted = !gameStarted // game state    
 })
+
 
 // when extra item is clicked
 // when idol is clicked

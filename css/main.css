@@ -42,7 +42,7 @@ header {
     align-items: center;
     margin-top: 10px;
     padding: 3vh 4vw;
-    background-color: #fcdaa2;
+    background-color: rgb(255, 242, 220);
 }
 
 h1 {
@@ -55,9 +55,17 @@ h1 img {
     height: auto;
 }
 
+h2 {
+
+}
+
+p {
+    margin-top: 0;
+}
+
 .viewport {
     grid-area: viewport;
-    margin: 10px 0 0 10px;
+    margin: 10px 0 10px 10px;
     display: grid;
     grid-template-columns: repeat(5, 10vw);
     grid-template-rows: repeat(4, 15vh);
@@ -100,16 +108,8 @@ h1 img {
 
 .shadowCtr {
     position: relative;
-}
-
-.hintMessage {
-    visibility: hidden;
-    opacity: 0;
-    position: absolute;
-    background-color: aliceblue;
-    color:#011320;
-    padding: 10px;
-    border-radius: 5px;
+    background-color: rgb(255, 242, 220);
+    z-index: 6;
 }
 
 .shadow {
@@ -118,6 +118,7 @@ h1 img {
     display: flex;
     place-self: center;
     position: relative;
+    cursor: pointer;
 }
 
 .shadow img {
@@ -125,9 +126,17 @@ h1 img {
     object-fit: contain;
 }
 
-.shadow:hover .hintMessage {
-    visibility: visible;
-    opacity: 1;
+.hintMessage {
+    display: none;
+    position: absolute;
+    background-color: aliceblue;
+    color:#011320;
+    padding: 10px;
+    border-radius: 5px;
+    top: -70px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
 }
 
 .foundCtr {
