@@ -75,102 +75,40 @@ let timeInt
 
 
 /*------ FUNCTIONS ------*/
-// disable game interactions outside of start button
-function disableGame() {
-    items.forEach(item => {
-        item.removeEventListener('click', changeZIndex)
-    })
 
-    const instantLossEl = document.getElementById('instantLoss')
-    const instantWinEl = document.getElementById('instantWin')
-
-    if (instantLossEl) {
-        instantLossEl.removeEventListener('click', instantLoss)
-    }
-
-    if (instantWinEl) {
-        instantWinEl.removeEventListener('click', instantWin)
-    }
-
-    disableExtraClick()
-}
-
-// enable/disable extra items
-function enableExtraClick() {
-    const coconut = document.getElementById('eItem2')
-    const spoon = document.getElementById('eItem3')
-
-    coconut.addEventListener('click', handleEItemClick)
-    spoon.addEventListener('click', handleEItemClick)
-}
-
-function disableExtraClick() {
-    const coconut = document.getElementById('eItem2')
-    const spoon = document.getElementById('eItem3')
-
-    coconut.removeEventListener('click', handleEItemClick)
-    spoon.removeEventListener('click', handleEItemClick)
-}
-
-function handleEItemClick(event) {
-    const clickedItem = event.target
-    const resultMessage = document.querySelector('.gameRules h2')
-
-    if (clickedItem.id === 'eItem2' && eItemClickable) {
-        eItmMessage('Yummy but not needed, keep gathering items.<br>')
-        const image = document.createElement('img')
-        image.src = 'assets/coconut.png'
-        resultMessage.appendChild(image)
-    }
-
-    if (clickedItem.id === 'eItem3' && eItemClickable) {
-        eItmMessage('Not the most useful utensil...keep gathering.<br>')
-        const image = document.createElement('img')
-        image.src = 'assets/spoon.png'
-        resultMessage.appendChild(image)
-    }
-
-    function eItmMessage(message) {
-        resultMessage.innerHTML = message
-        const lineBreak = document.createElement('br')
-        resultMessage.appendChild(lineBreak)
-        // hide game rules paragraph
-        hidePgraph.style.display = 'none'
-    }
-}
-
-// Functions to hide and show the start button
+// HIDE PLAY BUTTON
 function hideButton() {
     startButton.style.display = 'none'
 }
 
+// SHOW PLAY BUTTON
 function showButton() {
     startButton.style.display = 'block'
 }
 
-// initializer -> set up initial state when button is pushed (with event listener)
+// INITIALIZE -> set up initial state when button is clicked
 function initItmClick() {
     items.forEach(item => {
         item.addEventListener('click', changeZIndex)
     })
 }
 
-// function to show hint message
+// SHOW HINT MESSAGE -> hover state
 function hintHover(hintMessage) {
     hintMessage.style.display = 'block'
 }
 
-// function to hide hint message
+// HIDE HINT MESSAGE -> when mouse moves off
 function hintHide(hintMessage) {
     hintMessage.style.display = 'none'
 }
 
-// setup timer -> set how timer state progresses
+// TIMER SETUP -> set how timer state progresses
 function startTimer() {
     timeInt = setInterval(updateTime, 1000)
 }
 
-// win message function
+// DISPLAY WIN MESSAGE
 function winMessage() {
     const resultMessage = document.querySelector('.gameRules h2')
     resultMessage.textContent = 'Your tribe wins immunity!'
@@ -178,9 +116,11 @@ function winMessage() {
     // hide paragraph when winMessage is called
     hidePgraph.style.display = 'none'
 
-    clearInterval(timeInt) // stop timer
+    // stop timer
+    clearInterval(timeInt)
 }
 
+// TIMER COUNTDOWN SETUP -> if timer reaches zero then call loss message
 function updateTime() {
     // timer logic
     const minutes = Math.floor(timeRemain / 60)
@@ -198,7 +138,7 @@ function updateTime() {
     }
 }
 
-// loss message function
+// DISPLAY LOSS MESSAGE
 function lossMessage() {
     const resultMessage = document.querySelector('.gameRules h2')
     resultMessage.textContent = 'Got nothing for ya, grab your stuff head back to camp.'
@@ -209,13 +149,14 @@ function lossMessage() {
     showButton()
 }
 
+// THIS DOES
 function revealFoundEls() {
     foundItms.forEach(found => {
         found.classList.add('found')
     })
 }
 
-// positioning found item to shadow location
+// POSITION 'FOUND' ITEMS TO 'SHADOW' ITEMS
 function alignFound() {
     for (const shadowItm in toShadowMap) {
         const foundItm = document.getElementById(toFoundMap[shadowItm])
@@ -228,7 +169,7 @@ function alignFound() {
     }
 }
 
-// changeZIndex -> player handle and changing z-index of items
+// PLAYER HANDLE TO CHANGE Z-INDEX OF ITEMS
 function changeZIndex(event) {
     // check if game has been initialized
     if (!gameStarted || !timeInt || !itemsClickable) return
@@ -260,6 +201,7 @@ function changeZIndex(event) {
 
 alignFound()
 
+// RESET Z-INDEX OF 'SHADOW' ITEMS
 function resetZIndex() {
     foundItmsCtr.style.zIndex = ''
 
@@ -268,7 +210,7 @@ function resetZIndex() {
     })
 }
 
-// disable instant items after instant win/loss
+// DISABLE CONDITIONAL ITEMS -> after instant win/loss
 function disableInstClickable() {
     const snakeBite = document.getElementById('instantLoss')
     const idol = document.getElementById('instantWin')
@@ -286,7 +228,7 @@ function disableInstClickable() {
     }
 }
 
-// show found item
+// DISPLAY ALIGNED 'FOUND' ITEM -> 'found' item appears in corresponding 'shadow' item location
 function revealItmFound(foundItmId) {
     const foundEl = document.getElementById(foundItmId)
     foundEl.classList.add('foundVisible')
@@ -303,7 +245,7 @@ function revealItmFound(foundItmId) {
     foundEl.style.top = `${shadowPos.top + window.scrollY}px`
 }
 
-// reset game function
+// RESET GAME
 function resetGame() {
     clearInterval(timeInt) // clear timer
     timeRemain = 120 // reset time
@@ -354,7 +296,7 @@ function resetGame() {
     })
 }
 
-// instant loss function -> when snake is clicked
+// INSTANT LOSS CONDITION -> when snake is clicked, you lose
 function instantLoss() {
     const snakeBite = document.getElementById('instantLoss')
     snakeBite.addEventListener('click', () => {
@@ -381,7 +323,7 @@ function instantLoss() {
     })
 }
 
-// instant win function -> when idol is found
+// INSTANT WIN -> when idol is found, you win
 function instantWin() {
     const idol = document.getElementById('instantWin')
     idol.addEventListener('click', () => {
@@ -410,7 +352,7 @@ function instantWin() {
     })
 }
 
-// item that's not needed function -> when extra item is selected
+// DISPLAY EXTRA ITEM MESSAGES -> when an extra item is selected, display message
 function extraItemMessage() {
     const coconut = document.getElementById('eItem2')
     const spoon = document.getElementById('eItem3')
@@ -437,6 +379,72 @@ function extraItemMessage() {
     })
 
     // update text content + hide paragraph
+    function eItmMessage(message) {
+        resultMessage.innerHTML = message
+        const lineBreak = document.createElement('br')
+        resultMessage.appendChild(lineBreak)
+        // hide game rules paragraph
+        hidePgraph.style.display = 'none'
+    }
+}
+
+// DISABLE GAME PLAY -> disable functions outside of start button
+function disableGame() {
+    items.forEach(item => {
+        item.removeEventListener('click', changeZIndex)
+    })
+
+    const instantLossEl = document.getElementById('instantLoss')
+    const instantWinEl = document.getElementById('instantWin')
+
+    if (instantLossEl) {
+        instantLossEl.removeEventListener('click', instantLoss)
+    }
+
+    if (instantWinEl) {
+        instantWinEl.removeEventListener('click', instantWin)
+    }
+
+    disableExtraClick()
+}
+
+// ENABLE EXTRA ITEMS -> enable 'extra' items when clicked
+function enableExtraClick() {
+    const coconut = document.getElementById('eItem2')
+    const spoon = document.getElementById('eItem3')
+
+    coconut.addEventListener('click', handleEItemClick)
+    spoon.addEventListener('click', handleEItemClick)
+}
+
+// DISABLE EXTRA ITEMS -> disable 'extra' items
+function disableExtraClick() {
+    const coconut = document.getElementById('eItem2')
+    const spoon = document.getElementById('eItem3')
+
+    coconut.removeEventListener('click', handleEItemClick)
+    spoon.removeEventListener('click', handleEItemClick)
+}
+
+// HANDLE EXTRA ITEMS -> display 'extra' item image and message in h2 tag
+function handleEItemClick(event) {
+    const clickedItem = event.target
+    const resultMessage = document.querySelector('.gameRules h2')
+
+    if (clickedItem.id === 'eItem2' && eItemClickable) {
+        eItmMessage('Yummy but not needed, keep gathering items.<br>')
+        const image = document.createElement('img')
+        image.src = 'assets/coconut.png'
+        resultMessage.appendChild(image)
+    }
+
+    if (clickedItem.id === 'eItem3' && eItemClickable) {
+        eItmMessage('Not the most useful utensil...keep gathering.<br>')
+        const image = document.createElement('img')
+        image.src = 'assets/spoon.png'
+        resultMessage.appendChild(image)
+    }
+
     function eItmMessage(message) {
         resultMessage.innerHTML = message
         const lineBreak = document.createElement('br')
