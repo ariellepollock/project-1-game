@@ -209,6 +209,8 @@ function resetGame() {
     startButton.textContent = 'SURVIVORS READY? GO!' // reset button message
     startButton.style.backgroundColor = '#011320' // reset button color
 
+    hidePgraph.style.display = 'block' // reset hidden paragraph
+
     // reset win/loss message
     const resultMessage = document.querySelector('.gameRules h2')
     resultMessage.textContent = '' // reset to empty string aka no message
