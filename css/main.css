@@ -71,9 +71,9 @@ p {
     grid-template-columns: repeat(5, 10vw);
     grid-template-rows: repeat(4, 15vh);
     grid-template-areas: 
-        ". item1 item10 . ."
-        ". . item2 item4 ."
-        ". item7 item6 . item3"
+        ". item1 item10 . eItem5"
+        "eItem4 eItem1 item2 item4 ."
+        "eItem3 item7 item6 eItem2 item3"
         ". item8 item5 item9 .";
     position: relative;
     overflow: hidden;
@@ -97,6 +97,14 @@ p {
     z-index: 0;
 }
 
+.extraItem {
+    width: 7vh;
+    display: flex;
+    place-self: center;
+    position: relative;
+    z-index: 0;
+}
+
 .shadowCtr, .foundCtr {
     grid-area: shadows;
     display: grid;
@@ -105,6 +113,7 @@ p {
     justify-content: space-evenly;
     z-index: 0;
     padding: 1vw;
+    background-color: rgb(255, 242, 220);
 }
 
 .shadow {
@@ -175,10 +184,12 @@ p {
 
 #item1 {
     grid-area: item1;
+    width: 8vh;
 }
 
 #item2 {
     grid-area: item2;
+    width: 5vh;
 }
 
 #item3 {
@@ -192,6 +203,7 @@ p {
 
 #item5 {
     grid-area: item5;
+    width: 6vh;
 }
 
 #item6 {
@@ -200,10 +212,12 @@ p {
 
 #item7 {
     grid-area: item7;
+    width: 9vh;
 }
 
 #item8 {
     grid-area: item8;
+    width: 8vh;
 }
 
 #item9 {
@@ -212,6 +226,30 @@ p {
 
 #item10 {
     grid-area: item10;
+    width: 5vh;
+}
+
+#eItem1 {
+    grid-area: eItem1;
+    width: 6vh;
+}
+
+#eItem2 {
+    grid-area: eItem2;
+    width: 5vh;
+}
+
+#eItem3 {
+    grid-area: eItem3;
+}
+
+#eItem4 {
+    grid-area: eItem4;
+}
+
+#eItem5 {
+    grid-area: eItem5;
+    width: 9vh;
 }
 
 button {
