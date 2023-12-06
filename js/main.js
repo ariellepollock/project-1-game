@@ -248,6 +248,28 @@ function instantLoss() {
     })
 }
 
+// instant win function -> when idol is found
+function instantWin() {
+    const idol = document.getElementById('instantWin')
+    idol.addEventListener('click', () => {
+        clearInterval(timeInt) // stop timer
+
+        // instant win message in h2 tag
+        const resultMessage = document.querySelector('.gameRules h2')
+        resultMessage.innerHTML = "WOW!! That bird almost got away. Nice job finding a hidden immunity idol, you win!!<br><br>"
+
+        // add idol image to message
+        const image = document.createElement('img')
+        image.src = 'assets/idol.png'
+        image.style.height = '12vh' // set height of idol image
+
+        resultMessage.appendChild(image)
+
+        // hide game rules paragraph
+        hidePgraph.style.display = 'none'
+    })
+}
+
 // item that's not needed function -> when extra item is selected
 function extraItemMessage() {
     const coconut = document.getElementById('eItem2')
@@ -279,23 +301,6 @@ function extraItemMessage() {
         hidePgraph.style.display = 'none'
     }
 }
-
-// instant win function -> when idol is found
-function instantWin() {
-    const idol = document.getElementById('instantWin')
-    idol.addEventListener('click', () => {
-        clearInterval(timeInt) // stop timer
-
-        // instant win message in h2 tag
-        const resultMessage = document.querySelector('.gameRules h2')
-        resultMessage.textContent = "WOW!! That bird almost got away. Nice job finding a hidden immunity idol, you win!!"
-        
-        // hide game rules paragraph
-        hidePgraph.style.display = 'none'
-    })
-}
-
-// renderIdol -> show "found" idol and activate getWinner + renderResults)
 
 /*------ EVENT LISTENERS ------*/
 // when mouse moves over/off

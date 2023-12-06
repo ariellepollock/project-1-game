@@ -252,6 +252,10 @@ p {
     width: 9vh;
 }
 
+#idol {
+    display: none;
+}
+
 button {
     height: 4vh;
     width: 25vh;
