@@ -246,14 +246,23 @@ function instantLoss() {
 // item that's not needed function -> when coconut is clicked
 function extraItemMessage() {
     const coconut = document.getElementById('eItem2')
-    coconut.addEventListener('click', () => {
-        // coconut message in h2 tag
-        const resultMessage = document.querySelector('.gameRules h2')
-        resultMessage.textContent = "Yummy but not needed, keep gathering items."
+    const spoon = document.getElementById('eItem3')
 
+    // coconut message
+    coconut.addEventListener('click', () => {
+        eItmMessage('Yummy but not needed, keep gathering items.')
+    })
+    // spoon message
+    spoon.addEventListener('click', () => {
+        eItmMessage('Not the most useful utensil...keep gathering.')
+    })
+
+    function eItmMessage(message) {
+        const resultMessage = document.querySelector('.gameRules h2')
+        resultMessage.textContent = message
         // hide game rules paragraph
         hidePgraph.style.display = 'none'
-    })
+    }
 }
 
 // renderIdol -> show "found" idol and activate getWinner + renderResults)
