@@ -55,6 +55,9 @@ const items = document.querySelectorAll('.items')
 const foundItms = document.querySelectorAll('.found')
 const shadowItms = document.querySelectorAll('.shadow')
 
+const foundItmsCtr = document.querySelector('.foundCtr')
+const shadowItmsCtr = document.querySelector('.shadowCtr')
+
 // button and timer elements
 const startButton = document.getElementById('startTimer')
 const timeDisplay = document.getElementById('timer')
@@ -165,6 +168,14 @@ function changeZIndex(event) {
 }
 
 alignFound()
+
+function resetZIndex() {
+    foundItmsCtr.style.zIndex = ''
+
+    shadowItmsCtr.querySelectorAll('.shadow').forEach(shadowItm => {
+        shadowItm.style.zIndex = ''
+    })
+}
 
 // show found item
 function revealItmFound(foundItmId) {

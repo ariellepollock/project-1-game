@@ -56,7 +56,7 @@ h1 img {
 }
 
 h2 {
-
+    text-align: center;
 }
 
 p {
@@ -90,7 +90,7 @@ p {
 }
 
 .items {
-    width: 8vh;
+    width: 7vh;
     display: flex;
     place-self: center;
     position: relative;
@@ -105,12 +105,6 @@ p {
     justify-content: space-evenly;
     z-index: 0;
     padding: 1vw;
-}
-
-.shadowCtr {
-    position: relative;
-    background-color: rgb(255, 242, 220);
-    z-index: 6;
 }
 
 .shadow {
