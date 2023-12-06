@@ -238,7 +238,20 @@ function instantLoss() {
         const resultMessage = document.querySelector('.gameRules h2')
         resultMessage.textContent = "Well that's a bummer, a snake bite is serious, we're removing you from the game."
         
-        // hide game rules h2 paragraph
+        // hide game rules paragraph
+        hidePgraph.style.display = 'none'
+    })
+}
+
+// item that's not needed function -> when coconut is clicked
+function extraItemMessage() {
+    const coconut = document.getElementById('eItem2')
+    coconut.addEventListener('click', () => {
+        // coconut message in h2 tag
+        const resultMessage = document.querySelector('.gameRules h2')
+        resultMessage.textContent = "Yummy but not needed, keep gathering items."
+
+        // hide game rules paragraph
         hidePgraph.style.display = 'none'
     })
 }
@@ -269,9 +282,11 @@ startButton.addEventListener('click', () => {
         initItmClick()
         startButton.textContent = 'GO BACK & START OVER!'
         startButton.style.backgroundColor = '#026ab2'
-
         // call instantLoss function here to enable only after button is clicked
         instantLoss()
+
+        // call extra item message here
+        extraItemMessage()
     } else {
         // reset game board
         resetGame()
