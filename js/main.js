@@ -49,6 +49,14 @@ let clickedItms = 0
 // track game state (to eventually restart game)
 let gameStarted = false
 
+// control extra items clickability
+let eItemClickable = false
+
+// control instant win/loss items clickability
+let instItemClickable = true
+
+let itemsClickable = true
+
 /*------ CACHED DOM ELEMENTS ------*/
 // get all elements with x class
 const items = document.querySelectorAll('.items')
@@ -67,6 +75,38 @@ let timeInt
 
 
 /*------ FUNCTIONS ------*/
+// disable game interactions outside of start button
+function disableGame() {
+    items.forEach(item => {
+        item.removeEventListener('click', changeZIndex)
+    })
+
+    const instantLossEl = document.getElementById('instantLoss')
+    const instantWinEl = document.getElementById('instantWin')
+
+    if (instantLossEl) {
+        instantLossEl.removeEventListener('click', instantLoss)
+    }
+
+    if (instantWinEl) {
+        instantWinEl.removeEventListener('click', instantWin)
+    }
+
+    const extraItems = [document.getElementById('eItem2'), document.getElementById('eItem3')]
+    extraItems.forEach(item => {
+        item.removeEventListener('click', extraItemMessage)
+    })
+}
+
+// Functions to hide and show the start button
+function hideButton() {
+    startButton.style.display = 'none'
+}
+
+function showButton() {
+    startButton.style.display = 'block'
+}
+
 // initializer -> set up initial state when button is pushed (with event listener)
 function initItmClick() {
     items.forEach(item => {
@@ -84,7 +124,7 @@ function hintHide(hintMessage) {
     hintMessage.style.display = 'none'
 }
 
-// setup timer -> set how timer state progresses, if else if
+// setup timer -> set how timer state progresses
 function startTimer() {
     timeInt = setInterval(updateTime, 1000)
 }
@@ -124,6 +164,8 @@ function lossMessage() {
 
     // hide paragraph when lossMessage is called
     hidePgraph.style.display = 'none'
+    // show button to play again
+    showButton()
 }
 
 function revealFoundEls() {
@@ -148,7 +190,7 @@ function alignFound() {
 // changeZIndex -> player handle and changing z-index of items
 function changeZIndex(event) {
     // check if game has been initialized
-    if (!gameStarted || !timeInt) return
+    if (!gameStarted || !timeInt || !itemsClickable) return
 
     const clickedItm = event.target
     if (clickedItm.classList.contains('items')) {
@@ -168,6 +210,9 @@ function changeZIndex(event) {
         // check if ALL items have been 'clicked'
         if (clickedItms === Object.keys(toFoundMap).length) {
             winMessage() // function for displaying win message
+            showButton() // show button to play again
+            itemsClickable = false
+            disableInstClickable()
         }
     }
 }
@@ -180,6 +225,22 @@ function resetZIndex() {
     shadowItmsCtr.querySelectorAll('.shadow').forEach(shadowItm => {
         shadowItm.style.zIndex = ''
     })
+}
+
+// disable instant items after instant win/loss
+function disableInstClickable() {
+    const snakeBite = document.getElementById('instantLoss')
+    const idol = document.getElementById('instantWin')
+
+    if (snakeBite && instItemClickable) {
+        snakeBite.removeEventListener('click', instantLoss)
+        instItemClickable = false
+    }
+
+    if (idol && instItemClickable) {
+        idol.removeEventListener('click', instantWin)
+        instItemClickable = false
+    }
 }
 
 // show found item
@@ -232,19 +293,26 @@ function resetGame() {
 function instantLoss() {
     const snakeBite = document.getElementById('instantLoss')
     snakeBite.addEventListener('click', () => {
-        clearInterval(timeInt) // stop timer
+        if (instItemClickable && clickedItms !== Object.keys(toFoundMap).length) {
+            clearInterval(timeInt) // stop timer
 
-        // instant loss message in h2 tag
-        const resultMessage = document.querySelector('.gameRules h2')
-        resultMessage.innerHTML = "Well that's a bummer, a snake bite is serious, we're removing you from the game.<br><br>"
+            // instant loss message in h2 tag
+            const resultMessage = document.querySelector('.gameRules h2')
+            resultMessage.innerHTML = "Well that's a bummer, a snake bite is serious, we're removing you from the game.<br><br>"
 
-        // add snake image to message
-        const image = document.createElement('img')
-        image.src = 'assets/snake.png'
-        resultMessage.appendChild(image)
+            // add snake image to message
+            const image = document.createElement('img')
+            image.src = 'assets/snake.png'
+            resultMessage.appendChild(image)
 
-        // hide game rules paragraph
-        hidePgraph.style.display = 'none'
+            // hide game rules paragraph
+            hidePgraph.style.display = 'none'
+
+            // disable interactions after loss
+            showButton()
+            itemsClickable = false
+            disableInstClickable()
+        }
     })
 }
 
@@ -252,21 +320,28 @@ function instantLoss() {
 function instantWin() {
     const idol = document.getElementById('instantWin')
     idol.addEventListener('click', () => {
-        clearInterval(timeInt) // stop timer
+        if (instItemClickable && clickedItms !== Object.keys(toFoundMap).length) {
+            clearInterval(timeInt) // stop timer
 
-        // instant win message in h2 tag
-        const resultMessage = document.querySelector('.gameRules h2')
-        resultMessage.innerHTML = "WOW!! That bird almost got away. Nice job finding a hidden immunity idol, you win!!<br><br>"
+            // instant win message in h2 tag
+            const resultMessage = document.querySelector('.gameRules h2')
+            resultMessage.innerHTML = "WOW!! That bird almost got away. Nice job finding a hidden immunity idol, you win!!<br><br>"
 
-        // add idol image to message
-        const image = document.createElement('img')
-        image.src = 'assets/idol.png'
-        image.style.height = '12vh' // set height of idol image
+            // add idol image to message
+            const image = document.createElement('img')
+            image.src = 'assets/idol.png'
+            image.style.height = '12vh' // set height of idol image
 
-        resultMessage.appendChild(image)
+            resultMessage.appendChild(image)
 
-        // hide game rules paragraph
-        hidePgraph.style.display = 'none'
+            // hide game rules paragraph
+            hidePgraph.style.display = 'none'
+
+            // disable interactions after win
+            showButton()
+            itemsClickable = false
+            disableInstClickable()
+        }
     })
 }
 
@@ -278,18 +353,22 @@ function extraItemMessage() {
 
     // coconut message
     coconut.addEventListener('click', () => {
-        eItmMessage('Yummy but not needed, keep gathering items.<br>')
-        const image = document.createElement('img')
-        image.src = 'assets/coconut.png'
-        resultMessage.appendChild(image)
+        if (eItemClickable) {
+            eItmMessage('Yummy but not needed, keep gathering items.<br>')
+            const image = document.createElement('img')
+            image.src = 'assets/coconut.png'
+            resultMessage.appendChild(image)
+        }
     })
 
     // spoon message
     spoon.addEventListener('click', () => {
-        eItmMessage('Not the most useful utensil...keep gathering.<br>')
-        const image = document.createElement('img')
-        image.src = 'assets/spoon.png'
-        resultMessage.appendChild(image)
+        if (eItemClickable) {
+            eItmMessage('Not the most useful utensil...keep gathering.<br>')
+            const image = document.createElement('img')
+            image.src = 'assets/spoon.png'
+            resultMessage.appendChild(image)
+        }
     })
 
     // update text content + hide paragraph
@@ -326,6 +405,17 @@ startButton.addEventListener('click', () => {
         initItmClick()
         startButton.textContent = 'START OVER'
         startButton.style.backgroundColor = '#026ab2'
+
+        if (eItemClickable) {
+            extraItemMessage()
+        }
+
+        // instant items clickability after button is clicked
+        instItemClickable = true
+
+        // hide button when game starts
+        hideButton()
+
         // call instantLoss function here to enable only after button is clicked
         instantLoss()
 
@@ -334,9 +424,19 @@ startButton.addEventListener('click', () => {
 
         // call instantWin function here
         instantWin()
+
     } else {
+
         // reset game board
         resetGame()
+
+        // show start button when game is reset
+        showButton()
+
+        // disable extra item clickability when game is reset
+        eItemClickable = false
+        // disable instant win/loss clickability when game is reset
+        instItemClickable = false
     }
     gameStarted = !gameStarted // game state    
 })
