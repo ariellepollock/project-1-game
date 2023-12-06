@@ -55,8 +55,8 @@ const items = document.querySelectorAll('.items')
 const foundItms = document.querySelectorAll('.found')
 const shadowItms = document.querySelectorAll('.shadow')
 
-const foundItmsCtr = document.querySelector('.foundCtr')
-const shadowItmsCtr = document.querySelector('.shadowCtr')
+// get paragraph element
+const hidePgraph = document.getElementById('hidePgraph')
 
 // button and timer elements
 const startButton = document.getElementById('startTimer')
@@ -95,6 +95,9 @@ function winMessage() {
     const resultMessage = document.querySelector('.gameRules h2')
     resultMessage.textContent = 'Your tribe wins immunity!'
 
+    // hide paragraph when winMessage is called
+    hidePgraph.style.display = 'none'
+
     clearInterval(timeInt) // stop timer
 }
 
@@ -119,6 +122,9 @@ function updateTime() {
 function lossMessage() {
     const resultMessage = document.querySelector('.gameRules h2')
     resultMessage.textContent = 'Got nothing for ya, grab your stuff head back to camp.'
+
+    // hide paragraph when lossMessage is called
+    hidePgraph.style.display = 'none'
 }
 
 function revealFoundEls() {
