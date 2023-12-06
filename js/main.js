@@ -92,10 +92,51 @@ function disableGame() {
         instantWinEl.removeEventListener('click', instantWin)
     }
 
-    const extraItems = [document.getElementById('eItem2'), document.getElementById('eItem3')]
-    extraItems.forEach(item => {
-        item.removeEventListener('click', extraItemMessage)
-    })
+    disableExtraClick()
+}
+
+// enable/disable extra items
+function enableExtraClick() {
+    const coconut = document.getElementById('eItem2')
+    const spoon = document.getElementById('eItem3')
+
+    coconut.addEventListener('click', handleEItemClick)
+    spoon.addEventListener('click', handleEItemClick)
+}
+
+function disableExtraClick() {
+    const coconut = document.getElementById('eItem2')
+    const spoon = document.getElementById('eItem3')
+
+    coconut.removeEventListener('click', handleEItemClick)
+    spoon.removeEventListener('click', handleEItemClick)
+}
+
+function handleEItemClick(event) {
+    const clickedItem = event.target
+    const resultMessage = document.querySelector('.gameRules h2')
+
+    if (clickedItem.id === 'eItem2' && eItemClickable) {
+        eItmMessage('Yummy but not needed, keep gathering items.<br>')
+        const image = document.createElement('img')
+        image.src = 'assets/coconut.png'
+        resultMessage.appendChild(image)
+    }
+
+    if (clickedItem.id === 'eItem3' && eItemClickable) {
+        eItmMessage('Not the most useful utensil...keep gathering.<br>')
+        const image = document.createElement('img')
+        image.src = 'assets/spoon.png'
+        resultMessage.appendChild(image)
+    }
+
+    function eItmMessage(message) {
+        resultMessage.innerHTML = message
+        const lineBreak = document.createElement('br')
+        resultMessage.appendChild(lineBreak)
+        // hide game rules paragraph
+        hidePgraph.style.display = 'none'
+    }
 }
 
 // Functions to hide and show the start button
@@ -287,6 +328,28 @@ function resetGame() {
         found.style.left = 'initial'
         found.style.top = 'initial'
     })
+
+    itemsClickable = true
+    eItemClickable = true
+
+    disableExtraClick()
+    enableExtraClick()
+
+    // Reattach event listeners for the extra items
+    const coconut = document.getElementById('eItem2');
+    const spoon = document.getElementById('eItem3');
+
+    coconut.addEventListener('click', () => {
+        if (eItemClickable) {
+            // Logic for coconut click
+        }
+    })
+
+    spoon.addEventListener('click', () => {
+        if (eItemClickable) {
+            // Logic for spoon click
+        }
+    })
 }
 
 // instant loss function -> when snake is clicked
@@ -406,7 +469,10 @@ startButton.addEventListener('click', () => {
         startButton.textContent = 'START OVER'
         startButton.style.backgroundColor = '#026ab2'
 
+        eItemClickable = true
+
         if (eItemClickable) {
+            enableExtraClick()
             extraItemMessage()
         }
 
@@ -440,5 +506,3 @@ startButton.addEventListener('click', () => {
     }
     gameStarted = !gameStarted // game state    
 })
-
-// when idol is clicked
