@@ -276,11 +276,13 @@ function disableInstClickable() {
     if (snakeBite && instItemClickable) {
         snakeBite.removeEventListener('click', instantLoss)
         instItemClickable = false
+        eItemClickable = false
     }
 
     if (idol && instItemClickable) {
         idol.removeEventListener('click', instantWin)
         instItemClickable = false
+        eItemClickable = false
     }
 }
 
