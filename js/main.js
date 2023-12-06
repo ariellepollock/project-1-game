@@ -236,33 +236,63 @@ function instantLoss() {
 
         // instant loss message in h2 tag
         const resultMessage = document.querySelector('.gameRules h2')
-        resultMessage.textContent = "Well that's a bummer, a snake bite is serious, we're removing you from the game."
-        
+        resultMessage.innerHTML = "Well that's a bummer, a snake bite is serious, we're removing you from the game.<br><br>"
+
+        // add snake image to message
+        const image = document.createElement('img')
+        image.src = 'assets/snake.png'
+        resultMessage.appendChild(image)
+
         // hide game rules paragraph
         hidePgraph.style.display = 'none'
     })
 }
 
-// item that's not needed function -> when coconut is clicked
+// item that's not needed function -> when extra item is selected
 function extraItemMessage() {
     const coconut = document.getElementById('eItem2')
     const spoon = document.getElementById('eItem3')
+    const resultMessage = document.querySelector('.gameRules h2')
 
     // coconut message
     coconut.addEventListener('click', () => {
-        eItmMessage('Yummy but not needed, keep gathering items.')
-    })
-    // spoon message
-    spoon.addEventListener('click', () => {
-        eItmMessage('Not the most useful utensil...keep gathering.')
+        eItmMessage('Yummy but not needed, keep gathering items.<br>')
+        const image = document.createElement('img')
+        image.src = 'assets/coconut.png'
+        resultMessage.appendChild(image)
     })
 
+    // spoon message
+    spoon.addEventListener('click', () => {
+        eItmMessage('Not the most useful utensil...keep gathering.<br>')
+        const image = document.createElement('img')
+        image.src = 'assets/spoon.png'
+        resultMessage.appendChild(image)
+    })
+
+    // update text content + hide paragraph
     function eItmMessage(message) {
-        const resultMessage = document.querySelector('.gameRules h2')
-        resultMessage.textContent = message
+        resultMessage.innerHTML = message
+        const lineBreak = document.createElement('br')
+        resultMessage.appendChild(lineBreak)
         // hide game rules paragraph
         hidePgraph.style.display = 'none'
     }
+}
+
+// instant win function -> when idol is found
+function instantWin() {
+    const idol = document.getElementById('instantWin')
+    idol.addEventListener('click', () => {
+        clearInterval(timeInt) // stop timer
+
+        // instant win message in h2 tag
+        const resultMessage = document.querySelector('.gameRules h2')
+        resultMessage.textContent = "WOW!! That bird almost got away. Nice job finding a hidden immunity idol, you win!!"
+        
+        // hide game rules paragraph
+        hidePgraph.style.display = 'none'
+    })
 }
 
 // renderIdol -> show "found" idol and activate getWinner + renderResults)
@@ -289,13 +319,16 @@ startButton.addEventListener('click', () => {
     if (!gameStarted) {
         startTimer()
         initItmClick()
-        startButton.textContent = 'GO BACK & START OVER!'
+        startButton.textContent = 'START OVER'
         startButton.style.backgroundColor = '#026ab2'
         // call instantLoss function here to enable only after button is clicked
         instantLoss()
 
         // call extra item message here
         extraItemMessage()
+
+        // call instantWin function here
+        instantWin()
     } else {
         // reset game board
         resetGame()
@@ -303,8 +336,4 @@ startButton.addEventListener('click', () => {
     gameStarted = !gameStarted // game state    
 })
 
-
-
-
-// when extra item is clicked
 // when idol is clicked
