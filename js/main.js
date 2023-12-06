@@ -76,7 +76,6 @@ function initItmClick() {
 
 // function to show hint message
 function hintHover(hintMessage) {
-    console.log(hintMessage)
     hintMessage.style.display = 'block'
 }
 
@@ -152,24 +151,24 @@ function changeZIndex(event) {
     if (!gameStarted || !timeInt) return
 
     const clickedItm = event.target
-    if (!clickedItm.classList.contains('items')) return
-
-    if (clickedItm.style.zIndex !== '-2') {
-        clickedItm.style.zIndex = '-2'
-        const matchFound = toFoundMap[clickedItm.id]
-        if (matchFound) {
-            revealItmFound(matchFound)
-            const corrFound = document.getElementById(matchFound)
-            if (corrFound) {
-                corrFound.style.zIndex = '4'
-                clickedItms++ // increment clicked items
+    if (clickedItm.classList.contains('items')) {
+        if (clickedItm.style.zIndex !== '-2') {
+            clickedItm.style.zIndex = '-2'
+            const matchFound = toFoundMap[clickedItm.id]
+            if (matchFound) {
+                revealItmFound(matchFound)
+                const corrFound = document.getElementById(matchFound)
+                if (corrFound) {
+                    corrFound.style.zIndex = '4'
+                    clickedItms++ // increment clicked items
+                }
             }
         }
-    }
 
-    // check if ALL items have been 'clicked'
-    if (clickedItms === Object.keys(toFoundMap).length) {
-        winMessage() // function for displaying win message
+        // check if ALL items have been 'clicked'
+        if (clickedItms === Object.keys(toFoundMap).length) {
+            winMessage() // function for displaying win message
+        }
     }
 }
 
@@ -229,6 +228,21 @@ function resetGame() {
     })
 }
 
+// instant loss function -> when snake is clicked
+function instantLoss() {
+    const snakeBite = document.getElementById('instantLoss')
+    snakeBite.addEventListener('click', () => {
+        clearInterval(timeInt) // stop timer
+
+        // instant loss message in h2 tag
+        const resultMessage = document.querySelector('.gameRules h2')
+        resultMessage.textContent = "Well that's a bummer, a snake bite is serious, we're removing you from the game."
+        
+        // hide game rules h2 paragraph
+        hidePgraph.style.display = 'none'
+    })
+}
+
 // renderIdol -> show "found" idol and activate getWinner + renderResults)
 
 /*------ EVENT LISTENERS ------*/
@@ -255,6 +269,9 @@ startButton.addEventListener('click', () => {
         initItmClick()
         startButton.textContent = 'GO BACK & START OVER!'
         startButton.style.backgroundColor = '#026ab2'
+
+        // call instantLoss function here to enable only after button is clicked
+        instantLoss()
     } else {
         // reset game board
         resetGame()
@@ -263,6 +280,7 @@ startButton.addEventListener('click', () => {
 })
 
 
+
+
 // when extra item is clicked
 // when idol is clicked
-// when snake is clicked

@@ -72,7 +72,7 @@ p {
     grid-template-rows: repeat(4, 15vh);
     grid-template-areas: 
         ". item1 item10 . eItem5"
-        "eItem4 eItem1 item2 item4 ."
+        "instantLoss eItem1 item2 item4 ."
         "eItem3 item7 item6 eItem2 item3"
         ". item8 item5 item9 .";
     position: relative;
@@ -243,8 +243,8 @@ p {
     grid-area: eItem3;
 }
 
-#eItem4 {
-    grid-area: eItem4;
+#instantLoss {
+    grid-area: instantLoss;
 }
 
 #eItem5 {
