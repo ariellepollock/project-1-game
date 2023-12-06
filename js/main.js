@@ -145,6 +145,12 @@ function lossMessage() {
 
     // hide paragraph when lossMessage is called
     hidePgraph.style.display = 'none'
+
+    // disable interactions after the loss
+    itemsClickable = false
+    eItemClickable = false
+    instItemClickable = false
+
     // show button to play again
     showButton()
 }
