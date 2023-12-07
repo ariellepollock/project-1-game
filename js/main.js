@@ -11,7 +11,7 @@
 
 
 
-/*------ STATE VARIABLES ------*/
+/*------ CONSTANTS ------*/
 
 const toFoundMap = {
     item1: 'item1Found',
@@ -38,6 +38,9 @@ const toShadowMap = {
     'item9Shadow': 'item9Found',
     'item10Shadow': 'item10Found',
 }
+
+
+/*------ STATE VARIABLES ------*/
 
 // count clicked items
 let clickedItms = 0
@@ -331,25 +334,26 @@ function instantWin() {
     })
 }
 
-// DISPLAY EXTRA ITEM MESSAGES -> when an extra item is selected, display message
+// DISPLAY EXTRA ITEM MESSAGES -> when an extra item is selected, display message and image
 function handleEItemClick(event) {
     const clickedItem = event.target;
     const resultMessage = document.querySelector('.gameRules h2');
     let message = '';
     let imageSrc = '';
 
+    // set up control flow with a switch statement, evaluate value for different cases
     if (eItemClickable) {
         switch (clickedItem.id) {
             case 'eItem2':
-                message = 'Sustainable but not needed, keep gathering items.<br>';
+                message = 'Sustainable but not needed, keep gathering items.';
                 imageSrc = 'assets/coconut.png';
                 break;
             case 'eItem1':
-                message = 'Useful, but there are sharper options out there.<br>';
+                message = 'Useful, but there are sharper options out there.';
                 imageSrc = 'assets/knife.png';
                 break;
             case 'eItem3':
-                message = 'Not the most useful utensil...keep gathering.<br>';
+                message = 'Not the most useful utensil...keep gathering.';
                 imageSrc = 'assets/spoon.png';
                 break;
             default:
