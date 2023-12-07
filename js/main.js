@@ -12,6 +12,7 @@
 
 
 /*------ STATE VARIABLES ------*/
+
 const toFoundMap = {
     item1: 'item1Found',
     item2: 'item2Found',

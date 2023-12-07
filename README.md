@@ -2,7 +2,7 @@
 
 ## Objective
 FIND ALL REQUESTED ITEMS BEFORE TIME RUNS OUT!!
-This game functions just like iSpy, the twist is that you're racing against the clock and not every item you find will get you closer to the WIN. Help your tribe avoid tribal council by finding all the items needed to survive.
+This game functions just like I SPY, the twist is that you're racing against the clock and not every item you find will get you closer to the WIN. Help your tribe avoid tribal council by finding all the items needed to survive.
 
 ## Easter Egg
 there's a hidden immunity idol out there, if you find it it's yours and you are guaranteed immunity (an automatic win)!
@@ -31,4 +31,7 @@ JavaScript, HTML5, CSS, Midjourney, & Photoshop
 - condense repetitive code
 - add mini games to play
 - add visual tracker to race against computer
+
+## Honorable Mention
+Imagery inspired by Walter Wick - the original illustrator of I SPY books
 
