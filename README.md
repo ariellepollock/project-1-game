@@ -22,11 +22,7 @@ As a user, I want the ability to...
 - click on all items OR immunity idol before timer runs out
 
 ## Wireframes
-![Alt text](assets/Screen Shot 2023-12-07 at 11.33.10 AM.png) 
-![Alt text](<Screen Shot 2023-12-07 at 11.33.43 AM.png>) 
-![Alt text](<Screen Shot 2023-12-07 at 11.34.18 AM.png>) 
-![Alt text](<Screen Shot 2023-12-07 at 11.46.41 AM.png>) 
-![Alt text](<Screen Shot 2023-12-07 at 11.48.20 AM.png>)
+![Alt text](assets/Screen Shot 2023-12-07 at 11.33.10 AM.png)
 
 ## Technologies Used
 - JavaScript
