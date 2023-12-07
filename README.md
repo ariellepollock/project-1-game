@@ -36,7 +36,6 @@ As a user, I want the ability to...
 - Photoshop
 
 ## Next Steps
-- condense repetitive code
 - create a functionality to randomize placement of items if player wants to play again
 - add mini games to play
 - add visual tracker to race against computer
