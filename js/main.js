@@ -137,7 +137,7 @@ function updateTime() {
 // DISPLAY LOSS MESSAGE
 function lossMessage() {
     const resultMessage = document.querySelector('.gameRules h2')
-    resultMessage.textContent = 'Got nothing for ya, grab your stuff head back to camp.'
+    resultMessage.textContent = "I've Got nothing for ya, grab your stuff head back to camp."
 
     // hide paragraph when lossMessage is called
     hidePgraph.style.display = 'none'
@@ -203,15 +203,6 @@ function changeZIndex(event) {
 
 // ALIGN FOUND ITEMS
 alignFound()
-
-// RESET Z-INDEX OF 'SHADOW' ITEMS
-function resetZIndex() {
-    foundItmsCtr.style.zIndex = ''
-
-    shadowItmsCtr.querySelectorAll('.shadow').forEach(shadowItm => {
-        shadowItm.style.zIndex = ''
-    })
-}
 
 // DISABLE CONDITIONAL ITEMS -> after instant win/loss
 function disableInstClickable() {
@@ -281,22 +272,6 @@ function resetGame() {
 
     disableExtraClick()
     enableExtraClick()
-
-    // Reattach event listeners for the extra items
-    const coconut = document.getElementById('eItem2');
-    const spoon = document.getElementById('eItem3');
-
-    coconut.addEventListener('click', () => {
-        if (eItemClickable) {
-            // Logic for coconut click
-        }
-    })
-
-    spoon.addEventListener('click', () => {
-        if (eItemClickable) {
-            // Logic for spoon click
-        }
-    })
 }
 
 // INSTANT LOSS CONDITION -> when snake is clicked, you lose
@@ -308,7 +283,7 @@ function instantLoss() {
 
             // instant loss message in h2 tag
             const resultMessage = document.querySelector('.gameRules h2')
-            resultMessage.innerHTML = "Well that's a bummer, a snake bite is serious, we're removing you from the game.<br><br>"
+            resultMessage.innerHTML = "A snake bite is serious, we're removing you from the game.<br><br>"
 
             // add snake image to message
             const image = document.createElement('img')
@@ -335,7 +310,7 @@ function instantWin() {
 
             // instant win message in h2 tag
             const resultMessage = document.querySelector('.gameRules h2')
-            resultMessage.innerHTML = "WOW!! That bird almost got away. Nice job finding a hidden immunity idol, you win!!<br><br>"
+            resultMessage.innerHTML = "That bird almost got away! You found a hidden immunity idol, you win!<br><br>"
 
             // add idol image to message
             const image = document.createElement('img')
@@ -358,15 +333,26 @@ function instantWin() {
 // DISPLAY EXTRA ITEM MESSAGES -> when an extra item is selected, display message
 function extraItemMessage() {
     const coconut = document.getElementById('eItem2')
+    const knife = document.getElementById('eItem1')
     const spoon = document.getElementById('eItem3')
     const resultMessage = document.querySelector('.gameRules h2')
 
     // coconut message
     coconut.addEventListener('click', () => {
         if (eItemClickable) {
-            eItmMessage('Yummy but not needed, keep gathering items.<br>')
+            eItmMessage('Sustainable but not needed, keep gathering items.<br>')
             const image = document.createElement('img')
             image.src = 'assets/coconut.png'
+            resultMessage.appendChild(image)
+        }
+    })
+
+    // knife message
+    knife.addEventListener('click', () => {
+        if (eItemClickable) {
+            eItmMessage('Useful, but there are sharper options out there.<br>')
+            const image = document.createElement('img')
+            image.src = 'assets/knife.png'
             resultMessage.appendChild(image)
         }
     })
@@ -414,18 +400,22 @@ function disableGame() {
 // ENABLE EXTRA ITEMS -> enable 'extra' items when clicked
 function enableExtraClick() {
     const coconut = document.getElementById('eItem2')
+    const knife = document.getElementById('eItem1')
     const spoon = document.getElementById('eItem3')
 
     coconut.addEventListener('click', handleEItemClick)
+    knife.addEventListener('click', handleEItemClick)
     spoon.addEventListener('click', handleEItemClick)
 }
 
 // DISABLE EXTRA ITEMS -> disable 'extra' items
 function disableExtraClick() {
     const coconut = document.getElementById('eItem2')
+    const knife = document.getElementById('eItem1')
     const spoon = document.getElementById('eItem3')
 
     coconut.removeEventListener('click', handleEItemClick)
+    knife.removeEventListener('click', handleEItemClick)
     spoon.removeEventListener('click', handleEItemClick)
 }
 
@@ -435,9 +425,16 @@ function handleEItemClick(event) {
     const resultMessage = document.querySelector('.gameRules h2')
 
     if (clickedItem.id === 'eItem2' && eItemClickable) {
-        eItmMessage('Yummy but not needed, keep gathering items.<br>')
+        eItmMessage('Sustainable but not needed, keep gathering items.<br>')
         const image = document.createElement('img')
         image.src = 'assets/coconut.png'
+        resultMessage.appendChild(image)
+    }
+
+    if (clickedItem.id === 'eItem1' && eItemClickable) {
+        eItmMessage('Useful, but there are sharper options out there.<br>')
+        const image = document.createElement('img')
+        image.src = 'assets/knife.png'
         resultMessage.appendChild(image)
     }
 
