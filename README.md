@@ -25,7 +25,11 @@ As a user, I want the ability to...
 ![wireframes](assets/image.png)
 
 ## Technologies Used
-JavaScript, HTML5, CSS, Midjourney, & Photoshop
+- JavaScript
+- HTML5
+- CSS
+- Midjourney
+- Photoshop
 
 ## Next Steps
 - condense repetitive code
