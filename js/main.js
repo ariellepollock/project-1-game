@@ -331,50 +331,63 @@ function instantWin() {
 }
 
 // DISPLAY EXTRA ITEM MESSAGES -> when an extra item is selected, display message
-function extraItemMessage() {
-    const coconut = document.getElementById('eItem2')
-    const knife = document.getElementById('eItem1')
-    const spoon = document.getElementById('eItem3')
-    const resultMessage = document.querySelector('.gameRules h2')
+function handleEItemClick(event) {
+    const clickedItem = event.target;
+    const resultMessage = document.querySelector('.gameRules h2');
+    let message = '';
+    let imageSrc = '';
 
-    // coconut message
-    coconut.addEventListener('click', () => {
-        if (eItemClickable) {
-            eItmMessage('Sustainable but not needed, keep gathering items.<br>')
-            const image = document.createElement('img')
-            image.src = 'assets/coconut.png'
-            resultMessage.appendChild(image)
+    if (eItemClickable) {
+        switch (clickedItem.id) {
+            case 'eItem2':
+                message = 'Sustainable but not needed, keep gathering items.<br>';
+                imageSrc = 'assets/coconut.png';
+                break;
+            case 'eItem1':
+                message = 'Useful, but there are sharper options out there.<br>';
+                imageSrc = 'assets/knife.png';
+                break;
+            case 'eItem3':
+                message = 'Not the most useful utensil...keep gathering.<br>';
+                imageSrc = 'assets/spoon.png';
+                break;
+            default:
+                break;
         }
-    })
 
-    // knife message
-    knife.addEventListener('click', () => {
-        if (eItemClickable) {
-            eItmMessage('Useful, but there are sharper options out there.<br>')
-            const image = document.createElement('img')
-            image.src = 'assets/knife.png'
-            resultMessage.appendChild(image)
-        }
-    })
-
-    // spoon message
-    spoon.addEventListener('click', () => {
-        if (eItemClickable) {
-            eItmMessage('Not the most useful utensil...keep gathering.<br>')
-            const image = document.createElement('img')
-            image.src = 'assets/spoon.png'
-            resultMessage.appendChild(image)
-        }
-    })
-
-    // update text content + hide paragraph
-    function eItmMessage(message) {
-        resultMessage.innerHTML = message
-        const lineBreak = document.createElement('br')
-        resultMessage.appendChild(lineBreak)
-        // hide game rules paragraph
-        hidePgraph.style.display = 'none'
+        resultMessage.innerHTML = message;
+        const image = document.createElement('img');
+        image.src = imageSrc;
+        resultMessage.appendChild(image);
+        resultMessage.appendChild(document.createElement('br'));
+        hidePgraph.style.display = 'none';
     }
+}
+
+// START THE GAME -> controls starting and resetting game with button click
+function startGame() {
+    if (!gameStarted) {
+        startTimer();
+        initItmClick();
+        startButton.textContent = 'PLAY AGAIN';
+        startButton.style.backgroundColor = '#026ab2';
+        eItemClickable = true;
+
+        if (eItemClickable) {
+            enableExtraClick();
+        }
+
+        instItemClickable = true;
+        hideButton();
+        instantLoss();
+        instantWin();
+    } else {
+        resetGame();
+        showButton();
+        eItemClickable = false;
+        instItemClickable = false;
+    }
+    gameStarted = !gameStarted;
 }
 
 // DISABLE GAME PLAY -> disable functions outside of start button
@@ -419,40 +432,6 @@ function disableExtraClick() {
     spoon.removeEventListener('click', handleEItemClick)
 }
 
-// HANDLE EXTRA ITEMS -> display 'extra' item image and message in h2 tag
-function handleEItemClick(event) {
-    const clickedItem = event.target
-    const resultMessage = document.querySelector('.gameRules h2')
-
-    if (clickedItem.id === 'eItem2' && eItemClickable) {
-        eItmMessage('Sustainable but not needed, keep gathering items.<br>')
-        const image = document.createElement('img')
-        image.src = 'assets/coconut.png'
-        resultMessage.appendChild(image)
-    }
-
-    if (clickedItem.id === 'eItem1' && eItemClickable) {
-        eItmMessage('Useful, but there are sharper options out there.<br>')
-        const image = document.createElement('img')
-        image.src = 'assets/knife.png'
-        resultMessage.appendChild(image)
-    }
-
-    if (clickedItem.id === 'eItem3' && eItemClickable) {
-        eItmMessage('Not the most useful utensil...keep gathering.<br>')
-        const image = document.createElement('img')
-        image.src = 'assets/spoon.png'
-        resultMessage.appendChild(image)
-    }
-
-    function eItmMessage(message) {
-        resultMessage.innerHTML = message
-        const lineBreak = document.createElement('br')
-        resultMessage.appendChild(lineBreak)
-        // hide game rules paragraph
-        hidePgraph.style.display = 'none'
-    }
-}
 
 /*------ EVENT LISTENERS ------*/
 // when mouse moves over/off
@@ -473,47 +452,6 @@ document.querySelector('.viewport').addEventListener('click', changeZIndex)
 
 // when start button is clicked
 startButton.addEventListener('click', () => {
-    if (!gameStarted) {
-        startTimer()
-        initItmClick()
-        startButton.textContent = 'PLAY AGAIN'
-        startButton.style.backgroundColor = '#026ab2'
-
-        eItemClickable = true
-
-        if (eItemClickable) {
-            enableExtraClick()
-            extraItemMessage()
-        }
-
-        // instant items clickability after button is clicked
-        instItemClickable = true
-
-        // hide button when game starts
-        hideButton()
-
-        // call instantLoss function here to enable only after button is clicked
-        instantLoss()
-
-        // call extra item message here
-        extraItemMessage()
-
-        // call instantWin function here
-        instantWin()
-
-    } else {
-
-        // reset game board
-        resetGame()
-
-        // show start button when game is reset
-        showButton()
-
-        // disable extra item clickability when game is reset
-        eItemClickable = false
-
-        // disable instant win/loss clickability when game is reset
-        instItemClickable = false
-    }
-    gameStarted = !gameStarted // game state    
+    startGame();
 })
+
