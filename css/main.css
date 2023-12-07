@@ -245,6 +245,7 @@ p {
 
 #instantLoss {
     grid-area: instantLoss;
+    width: 4vh;
 }
 
 #instantWin {

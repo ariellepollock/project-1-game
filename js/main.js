@@ -11,11 +11,6 @@
 
 
 
-/*------ CONSTANTS ------*/
-// audio file to play during last x-seconds of countdown
-const AUDIO = new Audio()
-
-
 /*------ STATE VARIABLES ------*/
 const toFoundMap = {
     item1: 'item1Found',
@@ -519,7 +514,7 @@ startButton.addEventListener('click', () => {
 
         // disable extra item clickability when game is reset
         eItemClickable = false
-        
+
         // disable instant win/loss clickability when game is reset
         instItemClickable = false
     }
