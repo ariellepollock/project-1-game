@@ -54,8 +54,12 @@ let eItemClickable = false
 
 // control instant win/loss items clickability
 let instItemClickable = true
-
 let itemsClickable = true
+
+// hold remaining time and interval ID for timer
+let timeRemain = 120;
+let timeInt
+
 
 /*------ CACHED DOM ELEMENTS ------*/
 // get all elements with x class
@@ -69,9 +73,6 @@ const hidePgraph = document.getElementById('hidePgraph')
 // button and timer elements
 const startButton = document.getElementById('startTimer')
 const timeDisplay = document.getElementById('timer')
-
-let timeRemain = 120;
-let timeInt
 
 
 /*------ FUNCTIONS ------*/
@@ -155,7 +156,7 @@ function lossMessage() {
     showButton()
 }
 
-// THIS DOES
+// ITERATE THROUGH AND ADD A CLASS -> to make elements marked found as visisble
 function revealFoundEls() {
     foundItms.forEach(found => {
         found.classList.add('found')
@@ -205,6 +206,7 @@ function changeZIndex(event) {
     }
 }
 
+// ALIGN FOUND ITEMS
 alignFound()
 
 // RESET Z-INDEX OF 'SHADOW' ITEMS
@@ -270,11 +272,11 @@ function resetGame() {
     items.forEach(item => {
         item.style.zIndex = '0'
     })
-
+    
+    // loop through, remove class and set CSS position and styles
     foundItms.forEach(found => {
         found.classList.remove('foundVisible')
         found.style.position = 'absolute'
-
         found.style.left = 'initial'
         found.style.top = 'initial'
     })
@@ -517,6 +519,7 @@ startButton.addEventListener('click', () => {
 
         // disable extra item clickability when game is reset
         eItemClickable = false
+        
         // disable instant win/loss clickability when game is reset
         instItemClickable = false
     }
