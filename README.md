@@ -21,7 +21,7 @@ As a user, I want the ability to...
 - optional: click on snake
 - click on all items OR immunity idol before timer runs out
 
-## Wireframes
+## Game States
 ![Alt text](<Screen Shot 2023-12-07 at 11.33.10 AM.png>)
 ![Alt text](<Screen Shot 2023-12-07 at 11.33.43 AM.png>)
 ![Alt text](<Screen Shot 2023-12-07 at 11.34.18 AM.png>)
