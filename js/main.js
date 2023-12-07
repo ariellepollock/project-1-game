@@ -476,7 +476,7 @@ startButton.addEventListener('click', () => {
     if (!gameStarted) {
         startTimer()
         initItmClick()
-        startButton.textContent = 'START OVER'
+        startButton.textContent = 'PLAY AGAIN'
         startButton.style.backgroundColor = '#026ab2'
 
         eItemClickable = true
