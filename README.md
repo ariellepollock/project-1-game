@@ -6,6 +6,7 @@ This game functions just like iSpy, the twist is that you're racing against the 
 
 ## Easter Egg
 there's a hidden immunity idol out there, if you find it it's yours and you are guaranteed immunity (an automatic win)!
+but watch out, there's also an item out there that might remove you from the game (an instant loss)
 
 ## Player's Directions: 
 OUTWIT OUTPLAY OUTLAST
@@ -16,12 +17,18 @@ As a user, I want the ability to...
 - press start
 - click on an item once "found"
 - click on items that aren't part of the winning set
-- optional: click on/"find" a hidden immunity idol
-- click on/"find" all items OR immunity idol before timer runs out
+- optional: click on a hidden immunity idol
+- optional: click on snake
+- click on all items OR immunity idol before timer runs out
 
 ## Wireframes
 ![wireframes](assets/image.png)
 
 ## Technologies Used
 JavaScript, HTML5, CSS, Midjourney, & Photoshop
+
+## Next Steps
+- condense repetitive code
+- add mini games to play
+- add visual tracker to race against computer
 
