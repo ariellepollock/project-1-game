@@ -5,8 +5,8 @@ FIND ALL REQUESTED ITEMS BEFORE TIME RUNS OUT!!
 This game functions just like I SPY, the twist is that you're racing against the clock and not every item you find will get you closer to the WIN. Help your tribe avoid tribal council by finding all the items needed to survive.
 
 ## Easter Egg
-there's a hidden immunity idol out there, if you find it it's yours and you are guaranteed immunity (an automatic win)!
-but watch out, there's also an item out there that might remove you from the game (an instant loss)
+- there's a hidden immunity idol out there, if you find it it's yours and you are guaranteed immunity (an automatic win)!
+- but watch out, there's also an item out there that might remove you from the game (an instant loss)
 
 ## Player's Directions: 
 OUTWIT OUTPLAY OUTLAST
